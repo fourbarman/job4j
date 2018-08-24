@@ -17,7 +17,7 @@ public class PointTest {
      * Test distanceTo().
      */
     @Test
-    public void distancePointAToPointB(){
+    public void distancePointAToPointB() {
         Point a = new Point(0, 2);
         Point b = new Point(2, 0);
         double result = a.distanceTo(b);
