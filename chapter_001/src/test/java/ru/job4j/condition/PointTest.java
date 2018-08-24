@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
  */
 public class PointTest {
     /**
-     * Test add.
+     * Test distanceTo().
      */
     @Test
     public void distancePointAToPointB(){
