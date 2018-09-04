@@ -23,4 +23,15 @@ public class ArrayDuplicateTest {
         String[] result = ad.remove(in);
         assertThat(result, is(out));
     }
+    /**
+     * Test remove when all values equal.
+     */
+    @Test
+    public void whenArrayHasAllDuplicates() {
+        String[] in = new String[] {"Привет", "Привет", "Привет", "Привет", "Привет"};
+        String[] out = new String[] {"Привет"};
+        ArrayDuplicate ad = new ArrayDuplicate();
+        String[] result = ad.remove(in);
+        assertThat(result, is(out));
+    }
 }
