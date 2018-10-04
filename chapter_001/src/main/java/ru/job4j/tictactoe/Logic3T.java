@@ -21,7 +21,7 @@ public class Logic3T {
         }
         //checking diagonals
         if ((table[0][0].hasMarkX() && table[1][1].hasMarkX() && table[2][2].hasMarkX())
-                || (table[0][2].hasMarkX() && table[1][1].hasMarkX() && table[2][0].hasMarkX()) ) {
+                || (table[0][2].hasMarkX() && table[1][1].hasMarkX() && table[2][0].hasMarkX())) {
             result = true;
             }
         //checking verticals
