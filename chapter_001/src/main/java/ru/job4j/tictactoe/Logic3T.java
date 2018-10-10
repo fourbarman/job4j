@@ -7,7 +7,7 @@ import java.util.function.Predicate;
  * Class builds table with Figure3T objects.
  * Responsible for game logic.
  * @author fourbarman (maks.java@yandex.ru).
- * @version 1.
+ * @version 1b.
  * @since 08.10.2018.
  */
 public class Logic3T {
@@ -19,6 +19,7 @@ public class Logic3T {
 
     /**
      * Constructor - builds new table with parameter.
+     *
      * @param table 2D array for building game table.
      */
     public Logic3T(Figure3T[][] table) {
@@ -27,52 +28,56 @@ public class Logic3T {
 
     /**
      * Checks the winner is X.
+     * First loop checks rows and columns.
+     * Second loop checks diagonals.
      * @return Is X winner.
      */
     public boolean isWinnerX() {
-        boolean result = false;
+        boolean col, row, toright, toleft;
         for (int i = 0; i < table.length; i++) {
-                if (table[i][0].hasMarkX() && table[i][1].hasMarkX() && table[i][2].hasMarkX()) {
-                    result = true;
-                    break;
+            col = true;
+            row = true;
+            for (int j = 0; j < table.length; j++) {
+                col &= table[i][j].hasMarkX();
+                row &= table[j][i].hasMarkX();
             }
+            if (col || row) return true;
         }
-        if ((table[0][0].hasMarkX() && table[1][1].hasMarkX() && table[2][2].hasMarkX())
-                || (table[0][2].hasMarkX() && table[1][1].hasMarkX() && table[2][0].hasMarkX())) {
-            result = true;
-            }
+        toright = true;
+        toleft = true;
         for (int i = 0; i < table.length; i++) {
-            if (table[0][i].hasMarkX() && table[1][i].hasMarkX() && table[2][i].hasMarkX()) {
-                result = true;
-                break;
-            }
+            toright &= table[i][i].hasMarkX();
+            toleft &= table[table.length - i - 1][i].hasMarkX();
         }
-        return result;
+        if (toright || toleft) return true;
+        return false;
     }
 
     /**
      * Checks the winner is O.
+     * First loop checks rows and columns.
+     * Second loop checks diagonals.
      * @return Is O winner.
      */
     public boolean isWinnerO() {
-        boolean result = false;
+        boolean col, row, toright, toleft;
         for (int i = 0; i < table.length; i++) {
-            if (table[i][0].hasMarkO() && table[i][1].hasMarkO() && table[i][2].hasMarkO()) {
-                result = true;
-                break;
+            col = true;
+            row = true;
+            for (int j = 0; j < table.length; j++) {
+                col &= table[i][j].hasMarkO();
+                row &= table[j][i].hasMarkO();
             }
+            if (col || row) return true;
         }
-        if ((table[0][0].hasMarkO() && table[1][1].hasMarkO() && table[2][2].hasMarkO())
-                || (table[0][2].hasMarkO() && table[1][1].hasMarkO() && table[2][0].hasMarkO())) {
-            result = true;
-        }
+        toright = true;
+        toleft = true;
         for (int i = 0; i < table.length; i++) {
-            if (table[0][i].hasMarkO() && table[1][i].hasMarkO() && table[2][i].hasMarkO()) {
-                result = true;
-                break;
-            }
+            toright &= table[i][i].hasMarkO();
+            toleft &= table[table.length - i - 1][i].hasMarkO();
         }
-        return result;
+        if (toright || toleft) return true;
+        return false;
     }
 
     /**
@@ -80,15 +85,13 @@ public class Logic3T {
      * @return If the table has free cell.
      */
     public boolean hasGap() {
-        boolean result = false;
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table.length; j++) {
-                if (!table[i][j].hasMarkX() || !table[i][j].hasMarkO()) {
-                    result = true;
-                    break;
+                if (!table[i][j].hasMarkX() && !table[i][j].hasMarkO()) {
+                    return true;
                 }
             }
         }
-        return result;
+        return false;
     }
 }
