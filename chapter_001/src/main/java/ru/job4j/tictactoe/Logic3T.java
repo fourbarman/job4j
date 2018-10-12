@@ -22,31 +22,39 @@ public class Logic3T {
     }
     /**
      * Checks the winner is X.
+     * Loop checks vertical and horisontal match.
      * @return Is X winner.
      */
     public boolean isWinnerX() {
-        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, 0, 1, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, 0, 2, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
+        boolean result = false;
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.fillBy(Figure3T::hasMarkX, 0, i, 1, 0)
+            || this.fillBy(Figure3T::hasMarkX, i, 0, 0, 1)) {
+                result = true;
+                break;
+            }
+        }
+        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
                 || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1)
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 2, 0, 0, 1);
+                || result;
     }
     /**
      * Checks the winner is O.
+     * Loop checks vertical and horisontal match.
      * @return Is O winner.
      */
     public boolean isWinnerO() {
-        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0)
-                || this.fillBy(Figure3T::hasMarkO, 0, 1, 1, 0)
-                || this.fillBy(Figure3T::hasMarkO, 0, 2, 1, 0)
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
+        boolean result = false;
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.fillBy(Figure3T::hasMarkO, 0, i, 1, 0)
+                    || this.fillBy(Figure3T::hasMarkO, i, 0, 0, 1)) {
+                result = true;
+                break;
+            }
+        }
+        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
                 || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1)
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkO, 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkO, 2, 0, 0, 1);
+                || result;
     }
     /**
      * Checks if the table has free cell to keep gaming.
@@ -55,7 +63,7 @@ public class Logic3T {
     public boolean hasGap() {
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table.length; j++) {
-                if (!table[i][j].hasMarkX() && !table[i][j].hasMarkO()) {
+                if (!table[i][j].hasMarkX() & !table[i][j].hasMarkO()) {
                     return true;
                 }
             }
