@@ -1,8 +1,5 @@
 package ru.job4j.tictactoe;
-
-
 import java.util.function.Predicate;
-
 /**
  * Class builds table with Figure3T objects.
  * Responsible for game logic.
@@ -11,12 +8,10 @@ import java.util.function.Predicate;
  * @since 08.10.2018.
  */
 public class Logic3T {
-
     /**
      * Preference table.
      */
     private final Figure3T[][] table;
-
     /**
      * Constructor - builds new table with parameter.
      *
@@ -25,61 +20,34 @@ public class Logic3T {
     public Logic3T(Figure3T[][] table) {
         this.table = table;
     }
-
     /**
      * Checks the winner is X.
-     * First loop checks rows and columns.
-     * Second loop checks diagonals.
      * @return Is X winner.
      */
     public boolean isWinnerX() {
-        boolean col, row, toright, toleft;
-        for (int i = 0; i < table.length; i++) {
-            col = true;
-            row = true;
-            for (int j = 0; j < table.length; j++) {
-                col &= table[i][j].hasMarkX();
-                row &= table[j][i].hasMarkX();
-            }
-            if (col || row) return true;
-        }
-        toright = true;
-        toleft = true;
-        for (int i = 0; i < table.length; i++) {
-            toright &= table[i][i].hasMarkX();
-            toleft &= table[table.length - i - 1][i].hasMarkX();
-        }
-        if (toright || toleft) return true;
-        return false;
+        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 1, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 2, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkX, this.table.length - 1 , 0, -1, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 1, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 2, 0, 0, 1);
     }
-
     /**
      * Checks the winner is O.
-     * First loop checks rows and columns.
-     * Second loop checks diagonals.
      * @return Is O winner.
      */
     public boolean isWinnerO() {
-        boolean col, row, toright, toleft;
-        for (int i = 0; i < table.length; i++) {
-            col = true;
-            row = true;
-            for (int j = 0; j < table.length; j++) {
-                col &= table[i][j].hasMarkO();
-                row &= table[j][i].hasMarkO();
-            }
-            if (col || row) return true;
-        }
-        toright = true;
-        toleft = true;
-        for (int i = 0; i < table.length; i++) {
-            toright &= table[i][i].hasMarkO();
-            toleft &= table[table.length - i - 1][i].hasMarkO();
-        }
-        if (toright || toleft) return true;
-        return false;
+        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 1, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 2, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkO, this.table.length - 1 , 0, -1, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 1, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 2, 0, 0, 1);
     }
-
     /**
      * Checks if the table has free cell to keep gaming.
      * @return If the table has free cell.
@@ -93,5 +61,27 @@ public class Logic3T {
             }
         }
         return false;
+    }
+    /**
+     * Checks if elements in one row are equal: hasMarkX or hasMarkO.
+     * @param predicate Predicate.
+     * @param startX Start X position.
+     * @param startY Start Y position.
+     * @param deltaX X offset.
+     * @param deltaY Y offset.
+     * @return If array contains equal object property values.
+     */
+    public boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
+        boolean result = true;
+        for (int index = 0; index != this.table.length; index++) {
+            Figure3T cell = this.table[startX][startY];
+            startX += deltaX;
+            startY += deltaY;
+            if (!predicate.test(cell)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }
