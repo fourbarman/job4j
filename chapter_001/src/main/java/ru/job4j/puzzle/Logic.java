@@ -114,7 +114,7 @@ public class Logic {
     }
 
     /**
-     * Coverts figure to 1 or 0.
+     * Coverts table to table with 1 or 0.
      * @return table with 0 or 1.
      */
     public int[][] convert() {
