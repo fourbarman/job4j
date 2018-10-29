@@ -37,7 +37,7 @@ public class Tracker {
      */
     public void replace(String id, Item item) {
         int index = -1;
-        for (int i = 0; i != this.items.length; i++) {
+        for (int i = 0; i <= this.position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 index = i;
             }
@@ -54,13 +54,15 @@ public class Tracker {
      */
     public void delete(String id) {
         int index = -1;
-        for (int i = 0; i != this.items.length; i++) {
+        for (int i = 0; i <= this.position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 index = i;
             }
         }
-        this.items[index] = null;
-        System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
+        if (index != -1) {
+            this.items[index] = null;
+            System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
+        }
     }
 
     /**
@@ -69,11 +71,7 @@ public class Tracker {
      * @return array of items.
      */
     public Item[] findAll() {
-        Item[] result = new Item[position];
-        for (int i = 0; i != this.position; i++) {
-            result[i] = this.items[i];
-        }
-        return result;
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
@@ -89,14 +87,15 @@ public class Tracker {
                 result = item;
                 break;
             }
+            else {
+                result = null;
+            }
         }
         return result;
     }
 
     /**
      * Searches item by keyword.
-     * First loop searches number of items.
-     * Second loop fills array to return.
      *
      * @param key Keyword for searching
      * @return Item.

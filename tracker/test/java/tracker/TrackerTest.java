@@ -6,6 +6,7 @@ import tracker.start.*;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -56,6 +57,20 @@ public class TrackerTest {
         tracker.findByName(key);
         assertThat(tracker.findAll()[0], is(stored));
     }
+    /**
+     * Test findByName when not found
+     */
+    @Test
+    public void whenFindByNameThenFindNothing() {
+        String key = "123";
+        Tracker tracker = new Tracker();
+        Item stored = new Item("test", "testDescription", 12L);
+        Item storedSecond = new Item("te", "testDescription", 123L);
+        tracker.add(stored);
+        tracker.add(storedSecond);
+        Item[] result = tracker.findByName(key);
+        assertThat(result.length, is(0));
+    }
 
     /**
      * Test findById
@@ -68,6 +83,19 @@ public class TrackerTest {
         tracker.add(storedItemOne);
         tracker.add(storedItemTwo);
         assertThat(tracker.findById(storedItemOne.getId()), is(storedItemOne));
+    }
+
+    /**
+     * Test findById when found nothing
+     */
+    @Test
+    public void whenFindByIdThenFoundNothing() {
+        Tracker tracker = new Tracker();
+        Item storedItemOne = new Item("test1", "testDescription", 123L);
+        Item storedItemTwo = new Item("test2", "testDescription2", 1234L);
+        tracker.add(storedItemOne);
+        tracker.add(storedItemTwo);
+        assertThat(tracker.findById("123"), is(nullValue()));
     }
 
     /**
