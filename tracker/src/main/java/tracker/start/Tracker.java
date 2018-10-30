@@ -87,9 +87,6 @@ public class Tracker {
                 result = item;
                 break;
             }
-            else {
-                result = null;
-            }
         }
         return result;
     }
@@ -102,7 +99,7 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         int found = 0;
-        for (int i = 0; i != this.items.length; i++) {
+        for (int i = 0; i != this.position; i++) {
             if (items[i] != null && key != null && items[i].getName().contains(key)) {
                 found++;
             }

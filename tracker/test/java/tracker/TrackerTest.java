@@ -5,9 +5,11 @@ import tracker.start.*;
 
 import org.junit.Test;
 
+
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 
 /**
  * Test.
@@ -51,12 +53,12 @@ public class TrackerTest {
         String key = "tes";
         Tracker tracker = new Tracker();
         Item stored = new Item("test", "testDescription", 12L);
-        Item storedSecond = new Item("te", "testDescription", 123L);
+        Item storedSecond = new Item("item", "testDescription", 123L);
         tracker.add(stored);
         tracker.add(storedSecond);
-        tracker.findByName(key);
-        assertThat(tracker.findAll()[0], is(stored));
+        assertThat(tracker.findByName(key)[0], is(stored));
     }
+
     /**
      * Test findByName when not found
      */
@@ -68,8 +70,7 @@ public class TrackerTest {
         Item storedSecond = new Item("te", "testDescription", 123L);
         tracker.add(stored);
         tracker.add(storedSecond);
-        Item[] result = tracker.findByName(key);
-        assertThat(result.length, is(0));
+        assertThat(tracker.findByName(key), is(emptyArray()));
     }
 
     /**
@@ -114,5 +115,23 @@ public class TrackerTest {
         tracker.add(storedItemFour);
         tracker.delete(storedItemTwo.getId());
         assertThat(tracker.findAll()[1], is(storedItemThree));
+    }
+
+    /**
+     * Test delete when not found
+     */
+    @Test
+    public void whenDeleteAndNotFound() {
+        Tracker tracker = new Tracker();
+        Item storedItemOne = new Item("test1", "testDescription1", 1L);
+        Item storedItemTwo = new Item("test2", "testDescription2", 12L);
+        Item storedItemThree = new Item("test3", "testDescription3", 123L);
+        Item storedItemFour = new Item("test4", "testDescription4", 1234L);
+        tracker.add(storedItemOne);
+        tracker.add(storedItemTwo);
+        tracker.add(storedItemThree);
+        tracker.add(storedItemFour);
+        tracker.delete("123");
+        assertThat(tracker.findAll().length, is(4));
     }
 }
