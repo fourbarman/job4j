@@ -36,8 +36,8 @@ public class Tracker {
      * @param item new Item to replace.
      */
     public void replace(String id, Item item) {
-        for (int i = 0; i <= this.position; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
+        for (int i = 0; i < this.position; i++) {
+            if (item != null && this.items[i].getId().equals(id)) {
                 this.items[i] = item;
                 item.setId(id);
                 break;
@@ -51,10 +51,11 @@ public class Tracker {
      * @param id Id of deleting Item.
      */
     public void delete(String id) {
-        for (int i = 0; i <= this.position; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 this.items[i] = null;
                 System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
+                this.position--;
                 break;
             }
         }
@@ -95,7 +96,7 @@ public class Tracker {
     public Item[] findByName(String key) {
         int found = 0;
         Item[] result = new Item[this.items.length];
-        for (int i = 0; i != this.position; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (items[i] != null && key != null && items[i].getName().contains(key)) {
                 result[found] = this.items[i];
                 found++;
