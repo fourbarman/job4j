@@ -36,14 +36,12 @@ public class Tracker {
      * @param item new Item to replace.
      */
     public void replace(String id, Item item) {
-        int index = -1;
         for (int i = 0; i <= this.position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                index = i;
+                this.items[i] = item;
+                item.setId(id);
+                break;
             }
-        }
-        if (index != -1) {
-            this.items[index] = item;
         }
     }
 
@@ -53,15 +51,12 @@ public class Tracker {
      * @param id Id of deleting Item.
      */
     public void delete(String id) {
-        int index = -1;
         for (int i = 0; i <= this.position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                index = i;
+                this.items[i] = null;
+                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
+                break;
             }
-        }
-        if (index != -1) {
-            this.items[index] = null;
-            System.arraycopy(this.items, index + 1, this.items, index, this.items.length - index - 1);
         }
     }
 
@@ -102,8 +97,8 @@ public class Tracker {
         Item[] result = new Item[this.items.length];
         for (int i = 0; i != this.position; i++) {
             if (items[i] != null && key != null && items[i].getName().contains(key)) {
+                result[found] = this.items[i];
                 found++;
-                result[i] = items[i];
             }
         }
         return Arrays.copyOf(result, found);

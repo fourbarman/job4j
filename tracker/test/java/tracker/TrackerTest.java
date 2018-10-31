@@ -2,7 +2,6 @@ package tracker;
 
 import tracker.models.*;
 import tracker.start.*;
-import java.util.Arrays;
 
 import org.junit.Test;
 
