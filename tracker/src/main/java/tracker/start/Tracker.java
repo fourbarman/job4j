@@ -95,22 +95,18 @@ public class Tracker {
      * Searches item by keyword.
      *
      * @param key Keyword for searching
-     * @return Item.
+     * @return Items array.
      */
     public Item[] findByName(String key) {
         int found = 0;
+        Item[] result = new Item[this.items.length];
         for (int i = 0; i != this.position; i++) {
             if (items[i] != null && key != null && items[i].getName().contains(key)) {
                 found++;
-            }
-        }
-        Item[] result = new Item[found];
-        for (int i = 0; i != found; i++) {
-            if (items[i] != null && key != null && items[i].getName().contains(key)) {
                 result[i] = items[i];
             }
         }
-        return result;
+        return Arrays.copyOf(result, found);
     }
 
     /**
