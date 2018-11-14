@@ -27,9 +27,21 @@ public class StartUI {
             if (ADD.equals(answer)) {
                 //добавление заявки вынесено в отдельный метод.
                 this.createItem();
-            //} else if (SHOW.equals(answer)) {
-             //Добавить остальные действия системы по меню.
-                //this.getAll();
+            } else if (SHOW.equals(answer)) {
+             //Показать все заявки.
+                this.getAll();
+            } else if (EDIT.equals(answer)) {
+                //Редактировать заявку.
+                this.edit();
+            } else if (DELETE.equals(answer)) {
+                //Редактировать заявку.
+                this.delete();
+            } else if (FINDID.equals(answer)) {
+                //Редактировать заявку.
+                this.findWithId();
+            } else if (FINDNAME.equals(answer)) {
+                //Редактировать заявку.
+                this.findWithName();
             } else if (EXIT.equals(answer)) {
                 exit = true;
             }
@@ -63,9 +75,48 @@ public class StartUI {
         System.out.println("------------ Новая заявка с getId : " + task.getId() + "-----------");
     }
 
-    //public void String[] getAll() {
-        //return
-    //}
+    public void getAll() {
+        System.out.println("------------ Все хранимые заявки --------------");
+        this.tracker.findAll();
+    }
+
+    public void edit() {
+        System.out.println("------------ Редактирование заявки --------------");
+        String id = this.input.ask("Введите id заявки :");
+        System.out.println("------------ Данные редактируемой заявки --------------");
+        System.out.println("ID " + this.tracker.findById(id).getId() + "Имя: " + this.tracker.findById(id).getName() +
+                "Описание: " + this.tracker.findById(id).getDescription());
+        String name = this.input.ask("Введите новое имя заявки :");
+        String desc = this.input.ask("Введите новое описание заявки :");
+        Task task = new Task(name, desc);
+        this.tracker.replace(id, task);
+        System.out.println("------------ Заявка с новыми данными --------------");
+        System.out.println("ID " + this.tracker.findById(id).getId() + "Имя: " + this.tracker.findById(id).getName() +
+                "Описание: " + this.tracker.findById(id).getDescription());
+    }
+
+    public void delete() {
+        System.out.println("------------ Удаление заявки --------------");
+        String id = this.input.ask("Введите id заявки :");
+        this.tracker.delete(id);
+        System.out.println("------------ Заявка с ID " + id + " удалена--------------");
+    }
+
+    public void findWithId() {
+        System.out.println("------------ Редактирование заявки --------------");
+        String id = this.input.ask("Введите id заявки :");
+        System.out.println("------------ Найденная заявка --------------");
+        System.out.println("ID " + this.tracker.findById(id).getId() + "Имя: " + this.tracker.findById(id).getName() +
+                "Описание: " + this.tracker.findById(id).getDescription());
+    }
+
+    public void findWithName() {
+        System.out.println("------------ Редактирование заявки --------------");
+        String name = this.input.ask("Введите id заявки :");
+        System.out.println("------------ Найденная заявка --------------");
+        //System.out.println("ID " + this.tracker.findByName(name).getName() + "Имя: " + this.tracker.findById(id).getName() +
+                //"Описание: " + this.tracker.findById(id).getDescription());
+    }
 
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
