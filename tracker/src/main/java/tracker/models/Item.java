@@ -40,7 +40,7 @@ public class Item {
 	}
 	
 	public void setName(String name) {
-		this.name = id;
+		this.name = name;
 	}
 	
 	public String getName() {
