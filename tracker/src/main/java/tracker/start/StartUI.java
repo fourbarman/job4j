@@ -72,7 +72,7 @@ public class StartUI {
                 + "4. Find item by Id" + System.lineSeparator()
                 + "5. Find items by name" + System.lineSeparator()
                 + "6. Exit program" + System.lineSeparator()
-                + "Select: ");
+        );
     }
 
     /**
