@@ -6,8 +6,10 @@ import tracker.start.*;
 import org.junit.Test;
 
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+
 public class StartUITest {
 
     /**
@@ -22,20 +24,27 @@ public class StartUITest {
     }
 
     /**
-     * Test show.
+     * Test showAll.
      */
-    /**@Test
+
+    @Test
     public void whenUserAddCoupleItemsThenShowAll() {
         Tracker tracker = new Tracker();
-        Input inputFirst = new StubInput(new String[] {"1", "firstItem", "firstDesc", "6"});
-        Input inputSecond = new StubInput(new String[] {"1", "secondItem", "secondDesc", "7"});
-        new StartUI(inputFirst, tracker).init();
-        //new StartUI(inputSecond, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("firstItem"));
-    }*/
+        Input input = new StubInput(new String[] {
+                "0", "first name", "first desc",
+                "0", "second name", "second desc",
+                "1",
+                "6"});
+        //Item itemFirst = tracker.add(new Task("first", "firstDesc"));
+        //Item itemSecond = tracker.add(new Task ("second", "secondDesc"));
+        new StartUI(input, tracker).init();
+        assertThat(tracker.findAll()[0].getName(), is("first name"));
+        assertThat(tracker.findAll()[1].getName(), is("second name"));
+
+    }
 
     /**
-     * Test replace.
+     * Test edit.
      */
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
@@ -49,5 +58,20 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
+    }
+
+    /**
+     * Test delete.
+     */
+    @Test
+    public void whenUserDeleteItemThenTrackerHasNoItemWithSameName() {
+        Tracker tracker = new Tracker();
+        Input input = new StubInput(new String[]{
+                "0", "first name", "first desc",
+                "0", "to delete name", "to delete desc",
+                "3", tracker.findAll()[1].getId(),
+                "6"});
+        new StartUI(input, tracker).init();
+        assertThat(tracker.findAll()[1].getId(), is(nullValue()));
     }
 }
