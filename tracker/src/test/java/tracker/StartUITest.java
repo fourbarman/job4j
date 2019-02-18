@@ -1,4 +1,4 @@
-package tracker;
+package java.tracker;
 
 import tracker.models.*;
 import tracker.start.*;
