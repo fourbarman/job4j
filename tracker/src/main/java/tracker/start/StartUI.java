@@ -155,7 +155,7 @@ public class StartUI {
      */
 
     public void findWithId() {
-        System.out.println("------------ Редактирование заявки --------------");
+        System.out.println("------------ Поиск заявок по ID --------------");
         String id = this.input.ask("Введите id заявки :");
         if (this.tracker.findById(id) == null) {
             System.out.println("------------ Не найдено заявки по указанному ID --------------");
