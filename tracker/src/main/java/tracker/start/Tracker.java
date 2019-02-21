@@ -1,17 +1,16 @@
 package tracker.start;
 
 import tracker.models.*;
-
 import java.util.*;
 
-/**
- * Tracker.
- * Stores items.
- *
- * @author fourbarman (maks.java@yandex.ru).
- * @version 1.
- * @since 26.10.2018.
- */
+    /**
+     * Tracker.
+     * Stores items.
+     *
+     * @author fourbarman (maks.java@yandex.ru).
+     * @version 1.
+     * @since 26.10.2018.
+     */
 public class Tracker {
     private Item[] items = new Item[100];
     private int position = 0;

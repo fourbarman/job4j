@@ -1,28 +1,26 @@
 package tracker.start;
-import tracker.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+    /**
+     * MenuTracker.
+     * Shows program menu options and interacts with user input.
+     *
+     * @author fourbarman (maks.java@yandex.ru).
+     * @version $Id$.
+     * @since 21.02.2019.
+     */
 public class MenuTracker {
-    /**
-     * @param хранит ссылку на объект .
-     */
+
     private Input input;
-    /**
-     * @param хранит ссылку на объект .
-     */
     private Tracker tracker;
-    /**
-     * @param хранит ссылку на массив типа UserAction.
-     */
     private List<UserAction> actions = new ArrayList<>();
 
     /**
-     * Конструктор.
+     * Constructor.
      *
-     * @param input   объект типа Input
-     * @param tracker объект типа Tracker
+     * @param input   Input
+     * @param tracker Tracker
      */
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -30,38 +28,31 @@ public class MenuTracker {
     }
 
     /**
-     * Метод для получения массива меню.
+     * Fills array.
      *
-     * @return длину массива
+     * @param ui StartUI.
      */
-    public int getActionsLentgh() {
-        return this.actions.size();
-    }
-
-    /**
-     * Метод заполняет массив.
-     */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Add program"));
         this.actions.add(new ShowItems(1, "Show all items"));
         this.actions.add(new EditItem(2, "Edit item"));
         this.actions.add(new DeleteItem(3, "Delete item"));
         this.actions.add(new FindById(4, "Find item by Id"));
         this.actions.add(new FindByName(5, "Find items by name"));
-        this.actions.add(new Exit(6, "Exit Program"));
+        this.actions.add(new Exit(ui, 6, "Exit Program"));
     }
 
     /**
-     * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
+     * Does actions depending on key.
      *
-     * @param key ключ операции
+     * @param key Action key.
      */
     public void select(int key) {
         this.actions.get(key).execute(this.input, this.tracker);
     }
 
     /**
-     * Метод выводит на экран меню.
+     * Shows Menu.
      */
     public void show() {
         System.out.println("MENU");

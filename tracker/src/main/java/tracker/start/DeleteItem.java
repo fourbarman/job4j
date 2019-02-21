@@ -1,21 +1,45 @@
 package tracker.start;
-import tracker.models.*;
 
+    /**
+     * DeleteItem.
+     * Delete items.
+     *
+     * @author fourbarman (maks.java@yandex.ru).
+     * @version $Id$.
+     * @since 21.02.2019.
+     */
 public class DeleteItem implements UserAction {
 
     private int key;
     private String info;
 
+    /**
+     * Constructor.
+     *
+     * @param key  Action key.
+     * @param info Action info.
+     */
     public DeleteItem(int key, String info) {
         this.key = key;
         this.info = info;
     }
 
+    /**
+     * Returns action key value.
+     *
+     * @return value.
+     */
     @Override
     public int key() {
         return 3;
     }
 
+    /**
+     * Deletes Item from storage.
+     *
+     * @param input User input.
+     * @param tracker Item container.
+     */
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Удаление заявки --------------");
@@ -29,6 +53,11 @@ public class DeleteItem implements UserAction {
         System.out.println("-----------------------------------------------");
     }
 
+    /**
+     * Returns action info.
+     *
+     * @return value.
+     */
     @Override
     public String info() {
         return "3. Delete Item";
