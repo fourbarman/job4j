@@ -60,6 +60,6 @@ public class DeleteItem implements UserAction {
      */
     @Override
     public String info() {
-        return String.format("%s. %s", this.key(), "Delete Item");
+        return String.format("%s. %s", this.key(), this.info);
     }
 }

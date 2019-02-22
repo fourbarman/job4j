@@ -62,6 +62,6 @@ public class FindById implements UserAction {
      */
     @Override
     public String info() {
-        return String.format("%s. %s", this.key(), "Find item by Id");
+        return String.format("%s. %s", this.key(), this.info);
     }
 }
