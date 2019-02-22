@@ -70,6 +70,6 @@ public class EditItem implements UserAction {
      */
     @Override
     public String info() {
-        return "2. Edit item";
+        return String.format("%s. %s", this.key(), "Edit item");
     }
 }

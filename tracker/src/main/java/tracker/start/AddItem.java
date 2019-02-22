@@ -61,6 +61,6 @@ public class AddItem implements UserAction {
      */
     @Override
     public String info() {
-        return "0. Add new Item";
+        return String.format("%s. %s", this.key(), "Add new Item");
     }
 }

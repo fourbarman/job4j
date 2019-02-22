@@ -32,7 +32,7 @@ public class FindByName implements UserAction {
      */
     @Override
     public int key() {
-        return 0;
+        return 5;
     }
 
     /**
@@ -66,6 +66,6 @@ public class FindByName implements UserAction {
      */
     @Override
     public String info() {
-        return "5. Find items by name";
+        return String.format("%s. %s", this.key(), "Find items by name");
     }
 }

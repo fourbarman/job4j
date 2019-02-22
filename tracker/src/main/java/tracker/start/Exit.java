@@ -55,6 +55,6 @@ public class Exit implements UserAction {
      */
     @Override
     public String info() {
-        return "6. Exit program";
+        return String.format("%s. %s", this.key(), "Exit program");
     }
 }
