@@ -33,13 +33,13 @@ public class MenuTracker {
      * @param ui StartUI.
      */
     public void fillActions(StartUI ui) {
-        this.actions.add(new AddItem(0, "Add program"));
-        this.actions.add(new ShowItems(1, "Show all items"));
+        this.actions.add(new AddItem(0, "Add new Item"));
+        this.actions.add(new ShowItems(1, "Show all Items"));
         this.actions.add(new EditItem(2, "Edit item"));
-        this.actions.add(new DeleteItem(3, "Delete item"));
+        this.actions.add(new DeleteItem(3, "Delete Item"));
         this.actions.add(new FindById(4, "Find item by Id"));
         this.actions.add(new FindByName(5, "Find items by name"));
-        this.actions.add(new Exit(ui, 6, "Exit Program"));
+        this.actions.add(new Exit(ui, 6, "Exit program"));
     }
 
     /**
