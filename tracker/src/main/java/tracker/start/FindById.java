@@ -31,7 +31,7 @@ public class FindById implements UserAction {
      */
     @Override
     public int key() {
-        return 4;
+        return this.key;
     }
 
     /**

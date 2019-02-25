@@ -32,7 +32,7 @@ public class ShowItems implements UserAction {
      */
     @Override
     public int key() {
-        return 1;
+        return this.key;
     }
 
     /**

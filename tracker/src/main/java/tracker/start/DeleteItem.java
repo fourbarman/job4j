@@ -31,7 +31,7 @@ public class DeleteItem implements UserAction {
      */
     @Override
     public int key() {
-        return 3;
+        return this.key;
     }
 
     /**

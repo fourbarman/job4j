@@ -31,7 +31,7 @@ public class EditItem implements UserAction {
      */
     @Override
     public int key() {
-        return 2;
+        return this.key;
     }
 
     /**

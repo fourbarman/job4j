@@ -34,7 +34,7 @@ public class Exit implements UserAction {
      */
     @Override
     public int key() {
-        return 6;
+        return this.key;
     }
 
     /**

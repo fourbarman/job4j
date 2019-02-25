@@ -32,7 +32,7 @@ public class FindByName implements UserAction {
      */
     @Override
     public int key() {
-        return 5;
+        return this.key;
     }
 
     /**
