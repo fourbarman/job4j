@@ -16,6 +16,10 @@ public class MenuTracker {
     private Tracker tracker;
     private List<UserAction> actions = new ArrayList<>();
 
+    public List<UserAction> getActions() {
+        return actions;
+    }
+
     /**
      * Constructor.
      *
@@ -45,7 +49,7 @@ public class MenuTracker {
     /**
      * Does actions depending on key.
      *
-     * @param key Action key.
+     * @param key action key.
      */
     public void select(int key) {
         this.actions.get(key).execute(this.input, this.tracker);

@@ -40,7 +40,7 @@ public class StartUI {
         menu.fillActions(this);
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", menu.getActions()));
         } while (this.working);
 
         }
@@ -50,6 +50,6 @@ public class StartUI {
     * @param args String array.
     */
     public static void main(String[]args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
         }
     }

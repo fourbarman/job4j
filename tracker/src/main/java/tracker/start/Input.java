@@ -1,6 +1,8 @@
 package tracker.start;
 
-    /**
+import java.util.List;
+
+/**
      * Input.
      * Interface.
      *
@@ -13,4 +15,12 @@ public interface Input {
      * Ask user to enter something.
      */
     String ask(String question);
+
+    /**
+     * Does actions depending on key.
+     *
+     * @param question ask user to do action.
+     * @param range list of user actions.
+     */
+    int ask(String question, List<UserAction> range);
 }
