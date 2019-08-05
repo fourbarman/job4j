@@ -24,5 +24,16 @@ public class PointTest {
         double expected = 2.8D;
         assertThat(result, closeTo(expected, 0.1));
     }
+    /**
+     * Test distance3d().
+     */
+    @Test
+    public void distancePointAtoPointBIn3D() {
+        Point a = new Point(0, 0, 2);
+        Point b = new Point(2, 2, 2);
+        double result = a.distance3d(b);
+        double expected = 2.83D;
+        assertThat(result, closeTo(expected, 0.1));
+    }
 }
 
