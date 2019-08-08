@@ -1,7 +1,13 @@
 package tracker;
 
 import java.util.Objects;
-
+/**
+ * Item.
+ *
+ * @author fourbarman (mailto:maks.java@yandex.ru)
+ * @version 1
+ * @since 12.08.2019
+ */
 public class Item {
     private String id;
     private String name;

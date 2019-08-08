@@ -2,7 +2,13 @@ package tracker;
 
 import java.lang.*;
 import java.util.Arrays;
-
+/**
+ * Tracker.
+ *
+ * @author fourbarman (mailto:maks.java@yandex.ru)
+ * @version 1
+ * @since 12.08.2019
+ */
 public class Tracker {
     /**
      * Массив для хранение заявок.
@@ -56,7 +62,7 @@ public class Tracker {
     }
 
     /**
-     * Метод реализаущий удаление заявки
+     * Метод реализущий удаление заявки
      * @param id идентификатор удаляемой заявки
      */
     public boolean delete(String id){
@@ -88,7 +94,7 @@ public class Tracker {
         Item result[] = new Item[this.items.length];
         int found = 0;
         for (int i = 0; i < this.position; i++) {
-            if (this.items[i]!=null &&  this.items[i].getName().contains(key)) {
+            if (this.items[i]!=null && key!=null && this.items[i].getName().contains(key)) {
                 result[found] = items[i];
                 found++;
             }
