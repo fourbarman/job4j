@@ -20,12 +20,12 @@ public class TrackerTest {
     @Before
     public void setVar() {
         tracker = new Tracker();
-        item1 = new Item("firstItem", "firstDescription", System.currentTimeMillis());
-        item2 = new Item("secondItem", "secondDescription", System.currentTimeMillis());
-        item3 = new Item("thirdItem", "thirdDescription", System.currentTimeMillis());
-        item4 = new Item("fourthItem", "fourthDescription", System.currentTimeMillis());
-        item5 = new Item("fifthItem", "fifthDescription", System.currentTimeMillis());
-        newItem = new Item("newItem", "newDescription", System.currentTimeMillis());
+        item1 = new Item("firstItem", "firstDescription");
+        item2 = new Item("secondItem", "secondDescription");
+        item3 = new Item("thirdItem", "thirdDescription");
+        item4 = new Item("fourthItem", "fourthDescription");
+        item5 = new Item("fifthItem", "fifthDescription");
+        newItem = new Item("newItem", "newDescription");
     }
     /**
      * Test FindAll.
@@ -58,7 +58,7 @@ public class TrackerTest {
     }
     @Test
     public void WhenAddNewItemTheStorageContainsTheSameItem(){
-        Item item = new Item("firstItem", "firstDescription", System.currentTimeMillis());
+        Item item = new Item("firstItem", "firstDescription");
         tracker.add(item);
         assertThat(tracker.findAll()[0].hashCode(), is(item.hashCode()));
     }
@@ -186,7 +186,6 @@ public class TrackerTest {
     }
     @Test
     public void WhenReplaceItemThenSuccess(){
-        Item newItem = new Item("newItem", "newDescription", System.currentTimeMillis());
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);

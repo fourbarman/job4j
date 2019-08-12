@@ -28,6 +28,7 @@ public class Tracker {
     public Item add(Item item) {
         if(item != null) {
             item.setId(this.generateId());
+            item.setTime(System.currentTimeMillis());
             this.items[this.position++] = item;
         }
         return item;
@@ -45,7 +46,7 @@ public class Tracker {
     }
 
     /**
-     * Метод реализаущий замену заявки по ID
+     * Метод реализущий замену заявки по ID
      * @param id идентификатор заявки
      * @param item новая заявка
      */
@@ -53,6 +54,7 @@ public class Tracker {
         boolean success = false;
         for (int i = 0; i < this.position; i++) {
             if (this.items[i]!=null && this.items[i].getId().equals(id)) {
+                item.setTime(System.currentTimeMillis());
                 item.setId(id);
                 this.items[i] = item;
                 success = true;
