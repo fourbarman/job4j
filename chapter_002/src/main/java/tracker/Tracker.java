@@ -2,6 +2,8 @@ package tracker;
 
 import java.lang.*;
 import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Tracker.
  *
@@ -19,6 +21,12 @@ public class Tracker {
      * Указатель ячейки для новой заявки.
      */
     private int position = 0;
+
+    private static final Random RN = new Random();
+
+    String generateId() {
+        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+    }
 
     /**
      * Метод реализаущий добавление заявки в хранилище
@@ -41,9 +49,9 @@ public class Tracker {
      * что дает низкую вероятность коллизии в ID.
      * @return Уникальный ключ.
      */
-    private String generateId() {
-        return String.valueOf((int)System.currentTimeMillis() + (int)(Math.random()*10));
-    }
+//    private String generateId() {
+//        return String.valueOf((int)System.currentTimeMillis() + (int)(Math.random()*10));
+//    }
 
     /**
      * Метод реализущий замену заявки по ID
