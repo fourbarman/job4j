@@ -77,9 +77,9 @@ public class StartUI {
         System.out.println("------------ Все заявки ------------");
         for (Item items: tracker.findAll()) {
             System.out.println("ID заявки: " + items.getId()
-                            + "Имя зявки: " + items.getName()
-                            + "Комментарий: " + items.getDesc()
-                            + "Время создания: " + items.getTime());
+                            + " Имя зявки: " + items.getName()
+                            + " Комментарий: " + items.getDesc()
+                            + " Время создания: " + items.getTime());
         }
     }
     /**
@@ -89,18 +89,18 @@ public class StartUI {
         System.out.println("------------ Замена заявки ------------");
         String id = this.input.ask("Введите id заявки: ");
         if (this.tracker.findById(id) != null) {
-            System.out.println("ID заявки: " + this.tracker.findById(id) + " "
-                            + "Имя зявки: " + this.tracker.findById(id).getName() + " "
-                            + "Комментарий: " + this.tracker.findById(id) + " "
-                            + "Время создания: " + this.tracker.findById(id).getTime());
+            System.out.println("ID заявки: " + this.tracker.findById(id).getId() + " "
+                            + " Имя зявки: " + this.tracker.findById(id).getName() + " "
+                            + " Комментарий: " + this.tracker.findById(id).getDesc() + " "
+                            + " Время создания: " + this.tracker.findById(id).getTime());
             String name = this.input.ask("Введите имя новой заявки: ");
             String desc = this.input.ask("Введите новое описание заявки: ");
             Item item = new Item(name, desc);
             tracker.replace(id, item);
-            System.out.println("ID заявки: " + this.tracker.findById(id) + " "
-                            + "Имя зявки: " + this.tracker.findById(id).getName() + " "
-                            + "Комментарий: " + this.tracker.findById(id) + " "
-                            + "Время создания: " + this.tracker.findById(id).getTime());
+            System.out.println("ID заявки: " + this.tracker.findById(id).getId() + " "
+                            + " Имя зявки: " + this.tracker.findById(id).getName() + " "
+                            + " Комментарий: " + this.tracker.findById(id).getDesc() + " "
+                            + " Время создания: " + this.tracker.findById(id).getTime());
         } else {
             System.out.println("Не существует таким c ID " + id);
         }
@@ -112,9 +112,9 @@ public class StartUI {
         String id = this.input.ask("Введите id заявки: ");
         if (this.tracker.findById(id) != null) {
             System.out.println("ID заявки: " + this.tracker.findById(id) + " "
-                            + "Имя зявки: " + this.tracker.findById(id).getName() + " "
-                            + "Комментарий: " + this.tracker.findById(id) + " "
-                            + "Время создания: " + this.tracker.findById(id).getTime());
+                            + " Имя зявки: " + this.tracker.findById(id).getName() + " "
+                            + " Комментарий: " + this.tracker.findById(id) + " "
+                            + " Время создания: " + this.tracker.findById(id).getTime());
         } else {
             System.out.println("Не существует таким c ID " + id);
         }
@@ -128,9 +128,9 @@ public class StartUI {
             System.out.println("Результат поиска: ");
             for (Item items : tracker.findByName(name)) {
                 System.out.println("ID заявки: " + items.getId() + " "
-                                + "Имя зявки: " + items.getName() + " "
-                                + "Комментарий: " + items.getDesc() + " "
-                                + "Время создания: " + items.getTime());
+                                + " Имя зявки: " + items.getName() + " "
+                                + " Комментарий: " + items.getDesc() + " "
+                                + " Время создания: " + items.getTime());
             }
         } else {
             System.out.println("Не найдено заявок с именем: " + name);
