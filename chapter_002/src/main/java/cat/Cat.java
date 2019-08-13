@@ -14,7 +14,7 @@ public class Cat {
      *
      * @param nick nickname.
      */
-    public void giveNick(String nick){
+    public void giveNick(String nick) {
         this.name = nick;
     }
     /**

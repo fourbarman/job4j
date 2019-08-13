@@ -11,14 +11,14 @@ public class Student {
      * Prints a string.
      *
      */
-    public void music(){
+    public void music() {
         System.out.println("Tra tra tra");
     }
     /**
      * Prints a string.
      *
      */
-    public void song(){
+    public void song() {
         System.out.println("I believe I can fly");
     }
     /**

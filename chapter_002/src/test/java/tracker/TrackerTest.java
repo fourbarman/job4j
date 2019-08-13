@@ -31,16 +31,16 @@ public class TrackerTest {
      * Test FindAll.
      */
     @Test
-    public void FindAllWhenStorageIsEmpty(){
+    public void findAllWhenStorageIsEmpty() {
         assertThat(tracker.findAll(), emptyArray());
     }
     @Test
-    public void WhenAddOneItemThenStorageContainsOneItem(){
+    public void whenAddOneItemThenStorageContainsOneItem() {
         tracker.add(item1);
         assertThat(tracker.findAll().length, is(1));
     }
     @Test
-    public void WhenAddFiveItemThenStorageContainsFiveItems(){
+    public void whenAddFiveItemThenStorageContainsFiveItems() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -52,19 +52,19 @@ public class TrackerTest {
      * Test add.
      */
     @Test
-    public void WhenAddNewNullItemTheStorageIsEmpty(){
+    public void whenAddNewNullItemTheStorageIsEmpty() {
         tracker.add(null);
         assertThat("arr size should be equal to 0", tracker.findAll(), emptyArray());
     }
     @Test
-    public void WhenAddNewItemTheStorageContainsTheSameItem(){
+    public void whenAddNewItemTheStorageContainsTheSameItem() {
         Item item = new Item("firstItem", "firstDescription");
         tracker.add(item);
         assertThat(tracker.findAll()[0].hashCode(), is(item.hashCode()));
     }
     @Test
-    public void WhenAddThreeNewItemsTheStorageContainsSameItems(){
-        Item expected[] = {item1, item2, item3};
+    public void whenAddThreeNewItemsTheStorageContainsSameItems() {
+        Item[] expected = {item1, item2, item3};
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -74,21 +74,21 @@ public class TrackerTest {
      * Test findById.
      */
     @Test
-    public void WhenFoundById(){
+    public void whenFoundById() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         assertThat(tracker.findById(item2.getId()), is(item2));
     }
     @Test
-    public void WhenNotFoundByNullId(){
+    public void whenNotFoundByNullId() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         assertNull(tracker.findById(null));
     }
     @Test
-    public void WhenNotFoundByWrongId(){
+    public void whenNotFoundByWrongId() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -98,14 +98,14 @@ public class TrackerTest {
      * Test findByName.
      */
     @Test
-    public void WhenFoundByNameThenReturnOneItem() {
+    public void whenFoundByNameThenReturnOneItem() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         assertThat(tracker.findByName(item2.getName()).length, is(1));
     }
     @Test
-    public void WhenFoundBySameNameThenReturnSameItems() {
+    public void whenFoundBySameNameThenReturnSameItems() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -114,15 +114,15 @@ public class TrackerTest {
         assertThat(tracker.findByName("Item").length, is(5));
     }
     @Test
-    public void WhenFoundByNameReturnTheSameItem(){
-        Item expected[] = {item2};
+    public void whenFoundByNameReturnTheSameItem() {
+        Item[] expected = {item2};
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         assertThat(tracker.findByName(item2.getName()), is(expected));
     }
     @Test
-    public void WhenNotFoundByWrongNameReturnsEmptyArray(){
+    public void whenNotFoundByWrongNameReturnsEmptyArray() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -132,44 +132,44 @@ public class TrackerTest {
      * Test delete.
      */
     @Test
-    public void WhenDeleteItemThenSuccess(){
+    public void whenDeleteItemThenSuccess() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        assertThat(tracker.delete(item2.getId()),is(true));
+        assertThat(tracker.delete(item2.getId()), is(true));
     }
     @Test
-    public void WhenDeleteItemThenStorageDoesNotContainIt(){
+    public void whenDeleteItemThenStorageDoesNotContainIt() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         tracker.delete(item2.getId());
-        assertThat(tracker.findAll().length,is(2));
+        assertThat(tracker.findAll().length, is(2));
     }
     @Test
-    public void WhenDeleteItemThenMoveNextItemOnDeletedPlace(){
-        Item expected[] = {item1, item3, item4, item5};
+    public void whenDeleteItemThenMoveNextItemOnDeletedPlace() {
+        Item[] expected = {item1, item3, item4, item5};
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item4);
         tracker.add(item5);
         tracker.delete(item2.getId());
-        assertThat(tracker.findAll(),is(expected));
+        assertThat(tracker.findAll(), is(expected));
     }
     @Test
-    public void WhenDeleteItemWithWrongIdThenReturnFalse() {
+    public void whenDeleteItemWithWrongIdThenReturnFalse() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        assertThat(tracker.delete("wrong id"),is(false));
+        assertThat(tracker.delete("wrong id"), is(false));
     }
     @Test
-    public void WhenDeleteItemWithWrongIdThenStorageNotChanged() {
+    public void whenDeleteItemWithWrongIdThenStorageNotChanged() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        Item expected[] = tracker.findAll();
+        Item[] expected = tracker.findAll();
         tracker.delete("wrong id");
         assertThat(tracker.findAll(), is(expected));
     }
@@ -177,7 +177,7 @@ public class TrackerTest {
      * Test replace.
      */
     @Test
-    public void WhenReplaceItemThenStorageHasSameNumberOfItems() {
+    public void whenReplaceItemThenStorageHasSameNumberOfItems() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
@@ -185,14 +185,14 @@ public class TrackerTest {
         assertThat(tracker.findAll().length, is(3));
     }
     @Test
-    public void WhenReplaceItemThenSuccess(){
+    public void whenReplaceItemThenSuccess() {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        assertThat(tracker.replace(item2.getId(), newItem),is(true));
+        assertThat(tracker.replace(item2.getId(), newItem), is(true));
     }
     @Test
-    public void WhenReplaceItemThenNewItemOnTheReplacedPosition(){
+    public void whenReplaceItemThenNewItemOnTheReplacedPosition() {
         newItem.setId(item2.getId());
         tracker.add(item1);
         tracker.add(item2);
