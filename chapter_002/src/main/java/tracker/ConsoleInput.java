@@ -3,10 +3,25 @@ package tracker;
 import java.util.Scanner;
 
 public class ConsoleInput implements Input {
-    public Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+
     @Override
     public String ask(String question) {
-        System.out.println(question);
+        System.out.print(question);
         return scanner.nextLine();
+    }
+
+    @Override
+    public int askInt(String question) {
+        return Integer.valueOf(ask(question));
+    }
+
+    @Override
+    public int askInt(String question, int max) {
+        int select = askInt(question);
+        if (select < 0 || select >= max) {
+            throw new IllegalStateException(String.format("Out of about %s > [0, %s]", select, max));
+        }
+        return select;
     }
 }

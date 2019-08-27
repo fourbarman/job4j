@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author fourbarman (mailto:maks.java@yandex.ru)
  * @version $Id$
- * @since 19.02.2019
+ * @since 27.08.2019
  */
 public class StartUITest {
     private Tracker tracker;
