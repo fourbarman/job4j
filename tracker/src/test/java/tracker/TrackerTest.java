@@ -1,35 +1,60 @@
 package tracker;
 
+import org.junit.Before;
 import tracker.models.*;
 import tracker.start.*;
-
 import org.junit.Test;
-
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
-
-
 
 /**
  * Test.
  *
  * @author fourbarman (mailto:maks.java@yandex.ru)
- * @version 1
- * @since 29.10.2018
+ * @version 2
+ * @since 27.08.2019
  */
 public class TrackerTest {
+    Tracker tracker;
+    Item item1, item2, item3, item4;
+    @Before
+    public void setVar() {
+        tracker = new Tracker();
+        item1 = new Item("test1", "testDescription1", 1L);
+        item2 = new Item("test2", "testDescription2", 12L);
+        item3 = new Item("test3", "testDescription3", 123L);
+        item4 = new Item("test4", "testDescription4", 1234L);
+    }
 
     /**
      * Test add.
      */
     @Test
-    public void whenAddNewItem() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("test1", "testDescription", 123L);
-        tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+    public void whenAddNewItemThenStoresOneItem() {
+        tracker.add(item1);
+        assertThat(tracker.findAll().length, is(1));
+    }
+
+    /**
+     * Test add.
+     */
+    @Test
+    public void whenAddNewFourItemsThenStoresFourItems() {
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
+        assertThat(tracker.findAll().length, is(4));
+    }
+
+    /**
+     * Test add.
+     */
+    @Test
+    public void whenAddNewItemThenThisItemIsStored() {
+        tracker.add(item1);
+        assertThat(tracker.findAll()[0], is(item1));
     }
 
     /**
@@ -37,13 +62,33 @@ public class TrackerTest {
      */
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
-        Item previous = new Item("test1", "testDescription", 123L);
-        tracker.add(previous);
-        Item next = new Item("test2", "testDescription2", 1234L);
-        next.setId(previous.getId());
-        tracker.replace(previous.getId(), next);
-        assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
+        tracker.add(item1);
+        item2.setId(item1.getId());
+        tracker.replace(item1.getId(), item2);
+        assertThat(tracker.findById(item1.getId()).getName(), is("test2"));
+    }
+
+    /**
+     * Test findByName
+     */
+    @Test
+    public void whenFindByNameUniqueThenFindOne() {
+        String key = "t1";
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.findByName(key).length, is(1));
+    }
+    /**
+     * Test findByName
+     */
+    @Test
+    public void whenFindByNameThenFindAll() {
+        String key = "test";
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
+        assertThat(tracker.findByName(key).length, is(4));
     }
 
     /**
@@ -51,13 +96,10 @@ public class TrackerTest {
      */
     @Test
     public void whenFindByNameThenFindStored() {
-        String key = "tes";
-        Tracker tracker = new Tracker();
-        Item stored = new Item("test", "testDescription", 12L);
-        Item storedSecond = new Item("item", "testDescription", 123L);
-        tracker.add(stored);
-        tracker.add(storedSecond);
-        assertThat(tracker.findByName(key)[0], is(stored));
+        String key = "t1";
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.findByName(key)[0], is(item1));
     }
 
     /**
@@ -66,11 +108,8 @@ public class TrackerTest {
     @Test
     public void whenFindByNameThenFindNothing() {
         String key = "123";
-        Tracker tracker = new Tracker();
-        Item stored = new Item("test", "testDescription", 12L);
-        Item storedSecond = new Item("te", "testDescription", 123L);
-        tracker.add(stored);
-        tracker.add(storedSecond);
+        tracker.add(item1);
+        tracker.add(item2);
         assertThat(tracker.findByName(key), is(emptyArray()));
     }
 
@@ -79,12 +118,9 @@ public class TrackerTest {
      */
     @Test
     public void whenFindByIdThenFindStored() {
-        Tracker tracker = new Tracker();
-        Item storedItemOne = new Item("test1", "testDescription", 123L);
-        Item storedItemTwo = new Item("test2", "testDescription2", 1234L);
-        tracker.add(storedItemOne);
-        tracker.add(storedItemTwo);
-        assertThat(tracker.findById(storedItemOne.getId()), is(storedItemOne));
+        tracker.add(item1);
+        tracker.add(item2);
+        assertThat(tracker.findById(item1.getId()), is(item1));
     }
 
     /**
@@ -92,11 +128,8 @@ public class TrackerTest {
      */
     @Test
     public void whenFindByIdThenFoundNothing() {
-        Tracker tracker = new Tracker();
-        Item storedItemOne = new Item("test1", "testDescription", 123L);
-        Item storedItemTwo = new Item("test2", "testDescription2", 1234L);
-        tracker.add(storedItemOne);
-        tracker.add(storedItemTwo);
+        tracker.add(item1);
+        tracker.add(item2);
         assertThat(tracker.findById("123"), is(nullValue()));
     }
 
@@ -105,17 +138,12 @@ public class TrackerTest {
      */
     @Test
     public void whenDeleteSecondStoredItemArrayRebuilds() {
-        Tracker tracker = new Tracker();
-        Item storedItemOne = new Item("test1", "testDescription1", 1L);
-        Item storedItemTwo = new Item("test2", "testDescription2", 12L);
-        Item storedItemThree = new Item("test3", "testDescription3", 123L);
-        Item storedItemFour = new Item("test4", "testDescription4", 1234L);
-        tracker.add(storedItemOne);
-        tracker.add(storedItemTwo);
-        tracker.add(storedItemThree);
-        tracker.add(storedItemFour);
-        tracker.delete(storedItemTwo.getId());
-        assertThat(tracker.findAll()[1], is(storedItemThree));
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
+        tracker.delete(item2.getId());
+        assertThat(tracker.findAll()[1], is(item3));
     }
 
     /**
@@ -123,15 +151,10 @@ public class TrackerTest {
      */
     @Test
     public void whenDeleteAndNotFound() {
-        Tracker tracker = new Tracker();
-        Item storedItemOne = new Item("test1", "testDescription1", 1L);
-        Item storedItemTwo = new Item("test2", "testDescription2", 12L);
-        Item storedItemThree = new Item("test3", "testDescription3", 123L);
-        Item storedItemFour = new Item("test4", "testDescription4", 1234L);
-        tracker.add(storedItemOne);
-        tracker.add(storedItemTwo);
-        tracker.add(storedItemThree);
-        tracker.add(storedItemFour);
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
         tracker.delete("123");
         assertThat(tracker.findAll().length, is(4));
     }
