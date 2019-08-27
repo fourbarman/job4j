@@ -8,35 +8,38 @@ import java.util.List;
  *
  * @author fourbarman (maks.java@yandex.ru).
  * @version $Id$.
- * @since 26.02.2019.
+ * @since 27.08.2019.
  */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input {
 
     /**
      * Overriden method for validating user input. If data incorrect,
      * throws exceptions and asks to enter correct data.
-     *
-     * @param question Ask user to do action.
-     * @param range List of user actions.
-     * @return Read user console input.
      */
+    private final Input input;
+
+    public ValidateInput(final Input input) {
+        this.input = input;
+    }
+
     @Override
-    public int ask(String question, List<UserAction> range) {
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
+
+    public int ask(String question, List<UserAction> range){
         boolean invalid = true;
         int value = -1;
         do {
-
             try {
-                value = super.ask(question, range);
+                value = this.input.ask(question, range);
                 invalid = false;
             } catch (MenuOutException moe) {
-                System.out.println("Please select operation key from Menu");
+                System.out.println("Please select key from menu.");
             } catch (NumberFormatException nfe) {
-                System.out.println("Please, enter correct data");
+                System.out.println("Please enter validate data again.");
             }
-        }
-            while (invalid);
-                return value;
-
+        } while (invalid);
+        return  value;
     }
 }
