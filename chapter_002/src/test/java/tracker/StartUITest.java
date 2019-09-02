@@ -33,7 +33,7 @@ public class StartUITest {
      */
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-    Input input = new StubInput(new String[]{"1", "test name", "desc", "0"});
+    Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
     new StartUI(input, tracker).init();
     assertThat(tracker.findAll()[tracker.findAll().length - 1].getName(), is("test name"));
     }
@@ -43,7 +43,7 @@ public class StartUITest {
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
         Item item = tracker.add(new Item("test name", "desc"));
-        Input input = new StubInput(new String[]{"3", item.getId(), "test replace", "заменили заявку", "0"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
@@ -53,7 +53,7 @@ public class StartUITest {
     @Test
     public void whenFindAllThenShowAllItems() {
         Item[] expected = new Item[]{item1, item2, item3, item4, item5};
-        Input input = new StubInput(new String[]{"2", "0"});
+        Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll(), is(expected));
     }
@@ -62,7 +62,7 @@ public class StartUITest {
      */
     @Test
     public void whenSearchByIdThenFound() {
-        Input input = new StubInput(new String[]{"4", item2.getId(), "0"});
+        Input input = new StubInput(new String[]{"3", item2.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item2.getId()), is(item2));
     }
@@ -72,19 +72,19 @@ public class StartUITest {
     @Test
     public void whenSearchByNameThenFound() {
         Item[] expected = new Item[]{item2};
-        Input input = new StubInput(new String[]{"5", "second", "0"});
+        Input input = new StubInput(new String[]{"4", "second", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findByName("second"),is(expected));
+        assertThat(tracker.findByName("second"), is(expected));
     }
     /**
      * Test delete
      */
     @Test
     public void whenDeleteItemThenItemDeletes() {
-        Item[] expected = new Item[]{item1,item3, item4, item5};
-        Input input = new StubInput(new String[]{"6", item2.getId(), "0"});
+        Item[] expected = new Item[]{item1, item3, item4, item5};
+        Input input = new StubInput(new String[]{"5", item2.getId(), "6"});
         new StartUI(input, tracker).init();
         tracker.delete(item2.getId());
-        assertThat(tracker.findAll(),is(expected));
+        assertThat(tracker.findAll(), is(expected));
     }
 }

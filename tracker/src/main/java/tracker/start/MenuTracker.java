@@ -16,6 +16,10 @@ public class MenuTracker {
     private Tracker tracker;
     private List<UserAction> actions = new ArrayList<>();
 
+    public int getActionsLentgh() {
+        return this.actions.size();
+    }
+
     public List<UserAction> getActions() {
         return actions;
     }

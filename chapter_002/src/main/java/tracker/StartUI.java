@@ -8,13 +8,13 @@ package tracker;
  * @since 12.08.2019
  */
 public class StartUI {
-    private static final String EXIT = "0";
-    private static final String ADD = "1";
-    private static final String FINDALL = "2";
-    private static final String REPLACE = "3";
-    private static final String FINDBYID = "4";
-    private static final String FINDBYNAME = "5";
-    private static final String DELETE = "6";
+    private static final String ADD = "0";
+    private static final String FINDALL = "1";
+    private static final String REPLACE = "2";
+    private static final String FINDBYID = "3";
+    private static final String FINDBYNAME = "4";
+    private static final String DELETE = "5";
+    private static final String EXIT = "6";
     /**
      * Получение данных от пользователя.
      */
@@ -102,7 +102,7 @@ public class StartUI {
                             + " Комментарий: " + this.tracker.findById(id).getDesc() + " "
                             + " Время создания: " + this.tracker.findById(id).getTime());
         } else {
-            System.out.println("Не существует таким c ID " + id);
+            System.out.println("Не существует с таким ID " + id);
         }
     }
     /**
@@ -116,7 +116,7 @@ public class StartUI {
                             + " Комментарий: " + this.tracker.findById(id) + " "
                             + " Время создания: " + this.tracker.findById(id).getTime());
         } else {
-            System.out.println("Не существует таким c ID " + id);
+            System.out.println("Не существует с таким ID " + id);
         }
     }
     /**
@@ -145,7 +145,7 @@ public class StartUI {
             tracker.delete(id);
             System.out.println("Заявка удалена!");
         } else {
-            System.out.println("Не существует таким c ID " + id);
+            System.out.println("Не существует с таким ID " + id);
         }
     }
     /**
@@ -153,18 +153,18 @@ public class StartUI {
      */
     private void showMenu() {
         System.out.println("Меню.");
-        System.out.println("1. Добавление новой заявки");
-        System.out.println("2. Показать все заявки");
-        System.out.println("3. Редактирование заявки");
-        System.out.println("4. Поиск заявки по ID");
-        System.out.println("5. Поиск заявки по имени");
-        System.out.println("6. Удалить заявку");
-        System.out.println("0. Выход");
+        System.out.println("0. Добавление новой заявки");
+        System.out.println("1. Показать все заявки");
+        System.out.println("2. Редактирование заявки");
+        System.out.println("3. Поиск заявки по ID");
+        System.out.println("4. Поиск заявки по имени");
+        System.out.println("5. Удалить заявку");
+        System.out.println("6. Выход");
     }
 
     /**
-     * Запускт программы.
-     * @param args
+     * Запуск программы.
+     * @param args Args
      */
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
