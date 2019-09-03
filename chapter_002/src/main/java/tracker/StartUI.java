@@ -89,17 +89,17 @@ public class StartUI {
         System.out.println("------------ Replace item ------------");
         String id = this.input.ask("Enter Item's ID: ");
         if (this.tracker.findById(id) != null) {
-            System.out.println("Item's ID: " + this.tracker.findById(id).getId() + " "
-                            + " Item's name: " + this.tracker.findById(id).getName() + " "
-                            + " Description: " + this.tracker.findById(id).getDesc() + " "
+            System.out.println("Item's ID: " + this.tracker.findById(id).getId()
+                            + " Item's name: " + this.tracker.findById(id).getName()
+                            + " Description: " + this.tracker.findById(id).getDesc()
                             + " Birth time: " + this.tracker.findById(id).getTime());
             String name = this.input.ask("Enter new item's name: ");
             String desc = this.input.ask("Enter new item's description: ");
             Item item = new Item(name, desc);
             tracker.replace(id, item);
-            System.out.println("Item's ID: " + this.tracker.findById(id).getId() + " "
-                            + " Item's name: " + this.tracker.findById(id).getName() + " "
-                            + " Description: " + this.tracker.findById(id).getDesc() + " "
+            System.out.println("Item's ID: " + this.tracker.findById(id).getId()
+                            + " Item's name: " + this.tracker.findById(id).getName()
+                            + " Description: " + this.tracker.findById(id).getDesc()
                             + " Birth time: " + this.tracker.findById(id).getTime());
 //        } else {
 //            System.out.println("Не существует с таким ID " + id);
@@ -111,6 +111,7 @@ public class StartUI {
     public void findWithId() {
         String id = this.input.ask("Enter new item's ID: ");
         if (this.tracker.findById(id) != null) {
+            System.out.println("------------ Found item ------------");
             System.out.println("Item's ID: " + this.tracker.findById(id) + " "
                             + " Item's name: " + this.tracker.findById(id).getName() + " "
                             + " Description: " + this.tracker.findById(id) + " "
@@ -156,8 +157,8 @@ public class StartUI {
         System.out.println("0. Add new item");
         System.out.println("1. Show all items");
         System.out.println("2. Edit item");
-        System.out.println("3. Find items by name");
-        System.out.println("4. Find item by Id");
+        System.out.println("3. Find items by Id");
+        System.out.println("4. Find item by name");
         System.out.println("5. Delete item");
         System.out.println("6. Exit");
     }

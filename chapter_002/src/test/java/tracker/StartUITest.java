@@ -26,8 +26,8 @@ public class StartUITest {
                     + "0. Add new item" + System.lineSeparator()
                     + "1. Show all items" + System.lineSeparator()
                     + "2. Edit item" + System.lineSeparator()
-                    + "3. Find items by name" + System.lineSeparator()
-                    + "4. Find item by Id" + System.lineSeparator()
+                    + "3. Find items by Id" + System.lineSeparator()
+                    + "4. Find item by name" + System.lineSeparator()
                     + "5. Delete item" + System.lineSeparator()
                     + "6. Exit" + System.lineSeparator();
 
@@ -80,7 +80,7 @@ public class StartUITest {
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
     /**
-     * Test findByName
+     * Test findById
      */
     @Test
     public void whenSearchByIdThenFound() {
@@ -134,7 +134,7 @@ public class StartUITest {
      * Check user output.
      */
     @Test
-    public void whenFindAllItems(){
+    public void whenFindAllItems() {
         Input input = new StubInput(new String[] {"1", "6"});
         new StartUI(input, tracker).init();
         StringBuilder sb = new StringBuilder();
@@ -147,22 +147,14 @@ public class StartUITest {
                     .append(" Item's name: ")
                     .append(tracker.findAll()[i].getName())
                     .append(" Description: ")
-                    .append(tracker.findAll()[i].getId())
+                    .append(tracker.findAll()[i].getDesc())
                     .append(" Birth time: ")
-                    .append(System.lineSeparator())
-                    .toString();
+                    .append(tracker.findAll()[i].getTime())
+                    .append(System.lineSeparator());
+                    //.toString();
         }
         sb.append(showMenu);
-        assertThat(this.out.toString(), is(sb));
-//                new StringBuilder()
-//                .append(showMenu)
-//                .append("------------ All items ------------")
-//                .append(System.lineSeparator())
-//                .append("Item's ID: ")
-//                .append(tracker.findAll()[0].getId())
-//                .append(System.lineSeparator())
-//                .append(showMenu)
-//                .toString()));
+        assertThat(this.out.toString(), is(sb.toString()));
     }
     /**
      * Test replace action.
@@ -170,19 +162,55 @@ public class StartUITest {
      */
     @Test
     public void whenReplaceItem(){
-        Input input = new StubInput(new String[] {"0", "test name", "desc", "6"});
+        Item item = tracker.findAll()[2];
+        Input input = new StubInput(new String[] {"2", item.getId(), "replaced name", "replaced desc", "6"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
                 .append(showMenu)
-                .append("------------ Add new Item ------------")
+                .append("------------ Replace item ------------")
                 .append(System.lineSeparator())
-                .append("------------ ")
-                .append("New item added with Id: ")
-                .append(tracker.findAll()[tracker.findAll().length - 1].getId())
-                .append("------------")
+                .append("Item's ID: ")
+                .append(item.getId())
+                .append(" Item's name: ")
+                .append(item.getName())
+                .append(" Description: ")
+                .append(item.getDesc())
+                .append(" Birth time: ")
+                .append(item.getTime())
+                .append(System.lineSeparator())
+                .append("Item's ID: ")
+                .append(tracker.findAll()[2].getId())
+                .append(" Item's name: ")
+                .append(tracker.findAll()[2].getName())
+                .append(" Description: ")
+                .append(tracker.findAll()[2].getDesc())
+                .append(" Birth time: ")
+                .append(tracker.findAll()[2].getTime())
                 .append(System.lineSeparator())
                 .append(showMenu)
                 .toString()));
     }
-
+    /**
+     * Test findId action.
+     * Check user output.
+     */
+    @Test
+    public void whenFindById() {
+        Input input = new StubInput(new String[] {"3", item3.getId(), "6"});
+        new StartUI(input, tracker).init();
+        assertThat(this.out.toString(), is(new StringBuilder()
+                .append(showMenu)
+                .append("------------ Found item ------------")
+                .append(System.lineSeparator())
+                .append("Item's ID: ")
+                .append(item3.getId())
+                .append(" Item's name: ")
+                .append(item3.getName())
+                .append(" Description: ")
+                .append(item3.getDesc())
+                .append(" Birth time: ")
+                .append(item3.getTime())
+                .append(showMenu)
+                .toString()));
+    }
 }
