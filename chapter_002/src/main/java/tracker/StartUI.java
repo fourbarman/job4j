@@ -109,22 +109,22 @@ public class StartUI {
      * Find item by ID.
      */
     public void findWithId() {
-        String id = this.input.ask("Enter new item's ID: ");
+        String id = this.input.ask("Enter item's ID: ");
         if (this.tracker.findById(id) != null) {
             System.out.println("------------ Found item ------------");
-            System.out.println("Item's ID: " + this.tracker.findById(id) + " "
-                            + " Item's name: " + this.tracker.findById(id).getName() + " "
-                            + " Description: " + this.tracker.findById(id) + " "
+            System.out.println("Item's ID: " + this.tracker.findById(id).getId()
+                            + " Item's name: " + this.tracker.findById(id).getName()
+                            + " Description: " + this.tracker.findById(id).getDesc()
                             + " Birth time: " + this.tracker.findById(id).getTime());
 //        } else {
 //            System.out.println("Не существует с таким ID " + id);
         }
     }
     /**
-     * Fins items by name.
+     * Finds items by name.
      */
     public void findWithName() {
-        String name = this.input.ask("Enter new item's name: ");
+        String name = this.input.ask("Enter item's name: ");
         if (this.tracker.findById(name) != null) {
             System.out.println("Found items: ");
             for (Item items : tracker.findByName(name)) {
@@ -141,7 +141,7 @@ public class StartUI {
      * Delete item.
      */
     public void deleteItem() {
-        String id = this.input.ask("Enter new item's ID: ");
+        String id = this.input.ask("Enter item's ID: ");
         if (this.tracker.findById(id) != null) {
             tracker.delete(id);
             System.out.println("Item deleted!");

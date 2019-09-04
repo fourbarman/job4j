@@ -151,7 +151,6 @@ public class StartUITest {
                     .append(" Birth time: ")
                     .append(tracker.findAll()[i].getTime())
                     .append(System.lineSeparator());
-                    //.toString();
         }
         sb.append(showMenu);
         assertThat(this.out.toString(), is(sb.toString()));
@@ -196,8 +195,10 @@ public class StartUITest {
      */
     @Test
     public void whenFindById() {
-        Input input = new StubInput(new String[] {"3", item3.getId(), "6"});
+        String id = item3.getId();
+        Input input = new StubInput(new String[] {"3", id, "6"});
         new StartUI(input, tracker).init();
+        //Item item = tracker.findById(id);
         assertThat(this.out.toString(), is(new StringBuilder()
                 .append(showMenu)
                 .append("------------ Found item ------------")
@@ -210,7 +211,35 @@ public class StartUITest {
                 .append(item3.getDesc())
                 .append(" Birth time: ")
                 .append(item3.getTime())
+                .append(System.lineSeparator())
                 .append(showMenu)
                 .toString()));
+    }
+    /**
+     * Test findByName action.
+     * Check user output.
+     */
+    @Test
+    public void whenFindByName() {
+        String name = "";
+        Input input = new StubInput(new String[] {"4", name, "6"});
+        new StartUI(input, tracker).init();
+        StringBuilder sb = new StringBuilder();
+        sb.append(showMenu)
+                .append("------------ All items ------------")
+                .append(System.lineSeparator());
+        for (int i = 0; i < tracker.findAll().length; i++) {
+            sb.append("Item's ID: ")
+                    .append(tracker.findAll()[i].getId())
+                    .append(" Item's name: ")
+                    .append(tracker.findAll()[i].getName())
+                    .append(" Description: ")
+                    .append(tracker.findAll()[i].getDesc())
+                    .append(" Birth time: ")
+                    .append(tracker.findAll()[i].getTime())
+                    .append(System.lineSeparator());
+        }
+        sb.append(showMenu);
+        assertThat(this.out.toString(), is(sb.toString()));
     }
 }
