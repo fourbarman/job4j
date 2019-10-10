@@ -101,8 +101,6 @@ public class StartUI {
                             + " Item's name: " + this.tracker.findById(id).getName()
                             + " Description: " + this.tracker.findById(id).getDesc()
                             + " Birth time: " + this.tracker.findById(id).getTime());
-//        } else {
-//            System.out.println("Не существует с таким ID " + id);
         }
     }
     /**
@@ -116,8 +114,6 @@ public class StartUI {
                             + " Item's name: " + this.tracker.findById(id).getName()
                             + " Description: " + this.tracker.findById(id).getDesc()
                             + " Birth time: " + this.tracker.findById(id).getTime());
-//        } else {
-//            System.out.println("Не существует с таким ID " + id);
         }
     }
     /**
@@ -125,16 +121,14 @@ public class StartUI {
      */
     public void findWithName() {
         String name = this.input.ask("Enter item's name: ");
-        if (this.tracker.findById(name) != null) {
+        if (this.tracker.findByName(name) != null) {
             System.out.println("Found items: ");
             for (Item items : tracker.findByName(name)) {
-                System.out.println("Item's ID: " + items.getId() + " "
-                                + " Item's name: " + items.getName() + " "
-                                + " Description: " + items.getDesc() + " "
+                System.out.println("Item's ID: " + items.getId()
+                                + " Item's name: " + items.getName()
+                                + " Description: " + items.getDesc()
                                 + " Birth time: " + items.getTime());
             }
-//        } else {
-//            System.out.println("Не найдено заявок с именем: " + name);
         }
     }
     /**
@@ -144,9 +138,7 @@ public class StartUI {
         String id = this.input.ask("Enter item's ID: ");
         if (this.tracker.findById(id) != null) {
             tracker.delete(id);
-            System.out.println("Item deleted!");
-//        } else {
-//            System.out.println("Не существует с таким ID " + id);
+            System.out.println("Item with " + id + " deleted!");
         }
     }
     /**

@@ -9,4 +9,8 @@ public class ConsoleInput implements Input {
         System.out.println(question);
         return scanner.nextLine();
     }
+    @Override
+    public int askInt(String question) {
+        return 0;
+    }
 }

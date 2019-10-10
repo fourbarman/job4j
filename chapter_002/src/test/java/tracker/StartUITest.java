@@ -114,7 +114,7 @@ public class StartUITest {
      * Check user output.
      */
     @Test
-    public void whenAddItemThanHasItem(){
+    public void whenAddItemThanHasItem() {
         Input input = new StubInput(new String[] {"0", "test name", "desc", "6"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
@@ -160,7 +160,7 @@ public class StartUITest {
      * Check user output.
      */
     @Test
-    public void whenReplaceItem(){
+    public void whenReplaceItem() {
         Item item = tracker.findAll()[2];
         Input input = new StubInput(new String[] {"2", item.getId(), "replaced name", "replaced desc", "6"});
         new StartUI(input, tracker).init();
@@ -198,7 +198,6 @@ public class StartUITest {
         String id = item3.getId();
         Input input = new StubInput(new String[] {"3", id, "6"});
         new StartUI(input, tracker).init();
-        //Item item = tracker.findById(id);
         assertThat(this.out.toString(), is(new StringBuilder()
                 .append(showMenu)
                 .append("------------ Found item ------------")
@@ -221,25 +220,41 @@ public class StartUITest {
      */
     @Test
     public void whenFindByName() {
-        String name = "";
+        String name = item2.getName();
         Input input = new StubInput(new String[] {"4", name, "6"});
         new StartUI(input, tracker).init();
-        StringBuilder sb = new StringBuilder();
-        sb.append(showMenu)
-                .append("------------ All items ------------")
-                .append(System.lineSeparator());
-        for (int i = 0; i < tracker.findAll().length; i++) {
-            sb.append("Item's ID: ")
-                    .append(tracker.findAll()[i].getId())
-                    .append(" Item's name: ")
-                    .append(tracker.findAll()[i].getName())
-                    .append(" Description: ")
-                    .append(tracker.findAll()[i].getDesc())
-                    .append(" Birth time: ")
-                    .append(tracker.findAll()[i].getTime())
-                    .append(System.lineSeparator());
-        }
-        sb.append(showMenu);
-        assertThat(this.out.toString(), is(sb.toString()));
+        assertThat(this.out.toString(), is(
+                new StringBuilder().append(showMenu)
+                .append("Found items: ")
+                .append(System.lineSeparator())
+                .append("Item's ID: ")
+                .append(item2.getId())
+                .append(" Item's name: ")
+                .append(item2.getName())
+                .append(" Description: ")
+                .append(item2.getDesc())
+                .append(" Birth time: ")
+                .append(item2.getTime())
+                .append(System.lineSeparator())
+                .append(showMenu)
+                .toString()));
+    }
+    /**
+     * Test deleteItem action.
+     * Check user output.
+     */
+    @Test
+    public void whenDeleteItem() {
+        String id = item2.getId();
+        Input input = new StubInput(new String[] {"5", id, "6"});
+        new StartUI(input, tracker).init();
+        assertThat(this.out.toString(), is(
+                new StringBuilder().append(showMenu)
+                .append("Item with ")
+                .append(id)
+                .append(" deleted!")
+                .append(System.lineSeparator())
+                .append(showMenu)
+                .toString()));
     }
 }
