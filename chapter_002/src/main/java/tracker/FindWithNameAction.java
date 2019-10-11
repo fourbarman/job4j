@@ -14,10 +14,13 @@ public class FindWithNameAction implements UserAction {
         if (tracker.findByName(name) != null) {
             System.out.println("Found items: ");
             for (Item items : tracker.findByName(name)) {
-                System.out.println("Item's ID: " + items.getId()
-                        + " Item's name: " + items.getName()
-                        + " Description: " + items.getDesc()
-                        + " Birth time: " + items.getTime());
+                System.out.println(String.format(
+                        "Item's ID: %s Item's name: %s Description: %s Birth time: %d",
+                        items.getId(),
+                        items.getName(),
+                        items.getDesc(),
+                        items.getTime())
+                );
             }
         }
         return true;

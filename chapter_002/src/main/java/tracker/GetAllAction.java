@@ -10,10 +10,13 @@ public class GetAllAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("------------ All items ------------");
         for (Item items: tracker.findAll()) {
-            System.out.println("Item's ID: " + items.getId()
-                    + " Item's name: " + items.getName()
-                    + " Description: " + items.getDesc()
-                    + " Birth time: " + items.getTime());
+            System.out.println(String.format(
+                    "Item's ID: %s Item's name: %s Description: %s Birth time: %d",
+                    items.getId(),
+                    items.getName(),
+                    items.getDesc(),
+                    items.getTime())
+            );
         }
         return true;
     }

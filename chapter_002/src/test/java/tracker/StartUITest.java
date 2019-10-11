@@ -3,10 +3,9 @@ package tracker;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.Before;
-
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
+import java.io.ByteArrayOutputStream;
+import java.util.StringJoiner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 /**
@@ -14,13 +13,22 @@ import static org.junit.Assert.assertThat;
  *
  * @author fourbarman (mailto:maks.java@yandex.ru)
  * @version $Id$
- * @since 03.09.2019
+ * @since 11.10.2019
  */
-//public class StartUITest {
-//    Tracker tracker;
-//    Item item1, item2, item3, item4, item5;
-//    private final PrintStream stdout = System.out;
-//    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+public class StartUITest {
+    @Test
+    public void whenExit() {
+        StubInput input = new StubInput(
+                new String[] {"0"}
+        );
+        StubAction action = new StubAction();
+        new StartUI().init(input, new Tracker(), new UserAction[] { action });
+        assertThat(action.isCall(), is(true));
+    }
+    Tracker tracker;
+    Item item1, item2, item3, item4, item5;
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 //    private final String showMenu =
 //            "MENU" + System.lineSeparator()
 //                    + "0. Add new item" + System.lineSeparator()
@@ -31,25 +39,64 @@ import static org.junit.Assert.assertThat;
 //                    + "5. Delete item" + System.lineSeparator()
 //                    + "6. Exit" + System.lineSeparator();
 //
-//    @Before
-//    public void setVar() {
-//        tracker = new Tracker();
-//        item1 = new Item("firstItem", "firstDescription");
-//        item2 = new Item("secondItem", "secondDescription");
-//        item3 = new Item("thirdItem", "thirdDescription");
-//        item4 = new Item("fourthItem", "fourthDescription");
-//        item5 = new Item("fifthItem", "fifthDescription");
-//        tracker.add(item1);
-//        tracker.add(item2);
-//        tracker.add(item3);
-//        tracker.add(item4);
-//        tracker.add(item5);
-//        System.setOut(new PrintStream(this.out));
-//    }
-//    @After
-//    public void loadStdOutput() {
-//        System.setOut(new PrintStream(this.stdout));
-//    }
+    @Before
+    public void setVar() {
+        tracker = new Tracker();
+        item1 = new Item("firstItem", "firstDescription");
+        item2 = new Item("secondItem", "secondDescription");
+        item3 = new Item("thirdItem", "thirdDescription");
+        item4 = new Item("fourthItem", "fourthDescription");
+        item5 = new Item("fifthItem", "fifthDescription");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.add(item4);
+        tracker.add(item5);
+        System.setOut(new PrintStream(this.out));
+    }
+    @After
+    public void loadStdOutput() {
+        System.setOut(new PrintStream(this.stdout));
+    }
+    /**
+     * Test showMenu
+     */
+    @Test
+    public void whenPrtMenu() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream def = System.out;
+        System.setOut(new PrintStream(out));
+        StubInput input = new StubInput(
+                new String[] {"0"}
+        );
+        StubAction action = new StubAction();
+        new StartUI().init(input, new Tracker(), new UserAction[] { action });
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("MENU")
+                .add("0. Stub action")
+                .toString();
+        assertThat(new String(out.toByteArray()), is(expect));
+        System.setOut(def);
+    }
+    /**
+     * Test addAction
+     */
+    @Test
+    public void whenCheckOutput() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream def = System.out;
+        System.setOut(new PrintStream(out));
+        Tracker tracker = new Tracker();
+        Item item = new Item("fix bug", "go to hell");
+        tracker.add(item);
+        GetAllAction act = new GetAllAction();
+        act.execute(new StubInput(new String[] {}), tracker);
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add(item.getId() + " " + item.getName())
+                .toString();
+        assertThat(new String(out.toByteArray()), is(expect));
+        System.setOut(def);
+    }
 //    /**
 //     * Test add.
 //     */
@@ -257,4 +304,4 @@ import static org.junit.Assert.assertThat;
 //                .append(showMenu)
 //                .toString()));
 //    }
-//}
+}

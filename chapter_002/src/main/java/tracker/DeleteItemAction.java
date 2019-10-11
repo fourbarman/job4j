@@ -13,7 +13,7 @@ public class DeleteItemAction implements UserAction {
         String id = input.ask("Enter item's ID: ");
         if (tracker.findById(id) != null) {
             tracker.delete(id);
-            System.out.println("Item with " + id + " deleted!");
+            System.out.println(String.format("Item with %s deleted!", id));
         }
         return true;
     }

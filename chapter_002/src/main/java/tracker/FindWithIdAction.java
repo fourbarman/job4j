@@ -13,10 +13,13 @@ public class FindWithIdAction implements UserAction {
         String id = input.ask("Enter item's ID: ");
         if (tracker.findById(id) != null) {
             System.out.println("------------ Found item ------------");
-            System.out.println("Item's ID: " + tracker.findById(id).getId()
-                    + " Item's name: " + tracker.findById(id).getName()
-                    + " Description: " + tracker.findById(id).getDesc()
-                    + " Birth time: " + tracker.findById(id).getTime());
+            System.out.println(String.format(
+                    "Item's ID: %s Item's name: %s Description: %s Birth time: %d",
+                    tracker.findById(id).getId(),
+                    tracker.findById(id).getName(),
+                    tracker.findById(id).getDesc(),
+                    tracker.findById(id).getTime())
+            );
         }
         return true;
     }
