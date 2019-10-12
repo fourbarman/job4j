@@ -29,16 +29,7 @@ public class StartUITest {
     Item item1, item2, item3, item4, item5;
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-//    private final String showMenu =
-//            "MENU" + System.lineSeparator()
-//                    + "0. Add new item" + System.lineSeparator()
-//                    + "1. Show all items" + System.lineSeparator()
-//                    + "2. Edit item" + System.lineSeparator()
-//                    + "3. Find items by Id" + System.lineSeparator()
-//                    + "4. Find item by name" + System.lineSeparator()
-//                    + "5. Delete item" + System.lineSeparator()
-//                    + "6. Exit" + System.lineSeparator();
-//
+
     @Before
     public void setVar() {
         tracker = new Tracker();
@@ -63,9 +54,6 @@ public class StartUITest {
      */
     @Test
     public void whenPrtMenu() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream def = System.out;
-        System.setOut(new PrintStream(out));
         StubInput input = new StubInput(
                 new String[] {"0"}
         );
@@ -76,30 +64,59 @@ public class StartUITest {
                 .add("0. Stub action")
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
-        System.setOut(def);
     }
     /**
-     * Test addAction
+     * Test getAllAction output
      */
     @Test
-    public void whenCheckOutput() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream def = System.out;
-        System.setOut(new PrintStream(out));
-        Tracker tracker = new Tracker();
-        Item item = new Item("fix bug", "go to hell");
-        tracker.add(item);
+    public void whenGetAllActionCheckOutput() {
+        StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("------------ All items ------------");
         GetAllAction act = new GetAllAction();
         act.execute(new StubInput(new String[] {}), tracker);
-        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-                .add(item.getId() + " " + item.getName())
-                .toString();
-        assertThat(new String(out.toByteArray()), is(expect));
-        System.setOut(def);
+        for (Item item: tracker.findAll()) {
+                    expect.add("Item's ID: " + item.getId()
+                            + " Item's name: " + item.getName()
+                            + " Description: " + item.getDesc()
+                            + " Birth time: " + item.getTime());
+        }
+        assertThat(new String(out.toByteArray()), is(expect.toString()));
     }
-//    /**
-//     * Test add.
-//     */
+    /**
+     * Test findWithNameAction output.
+     */
+    @Test
+    public void whenFindWithNameActionCheckOutput() {
+        String key = "Item";
+        StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("------------ Find Item By Name ------------")
+                .add("Found items: ");
+        FindWithNameAction fwna = new FindWithNameAction();
+        fwna.execute(new StubInput(new String[] {key}), tracker);
+        for (Item item: tracker.findByName(key)) {
+            expect.add("Item's ID: " + item.getId()
+                    + " Item's name: " + item.getName()
+                    + " Description: " + item.getDesc()
+                    + " Birth time: " + item.getTime());
+        }
+        assertThat(new String(out.toByteArray()), is(expect.toString()));
+    }
+    /**
+     * Test createAction output.
+     */
+    @Test
+    public void whenCreateActionCheckOutput() {
+        StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                .add("------------ Add new Item ------------")
+                .add("------------ New item added ------------");
+        CreateAction ca = new CreateAction();
+        ca.execute(new StubInput(new String[] {"new", "new"}), tracker);
+            expect.add("Item's ID: " + tracker.findAll()[tracker.findAll().length - 1].getId()
+                    + " Item's name: " + tracker.findAll()[tracker.findAll().length - 1].getName()
+                    + " Description: " + tracker.findAll()[tracker.findAll().length - 1].getDesc()
+                    + " Birth time: " + tracker.findAll()[tracker.findAll().length - 1].getTime());
+        assertThat(new String(out.toByteArray()), is(expect.toString()));
+    }
 //    @Test
 //    public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
 //    Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});

@@ -13,7 +13,14 @@ public class CreateAction implements UserAction {
         String desc = input.ask("Item's description: ");
         Item item = new Item(name, desc);
         tracker.add(item);
-        System.out.println("------------ New item added with Id: " + item.getId() + "------------");
+        System.out.println("------------ New item added ------------");
+        System.out.println(String.format(
+                "Item's ID: %s Item's name: %s Description: %s Birth time: %d",
+                item.getId(),
+                item.getName(),
+                item.getDesc(),
+                item.getTime())
+        );
         return true;
     }
 }
