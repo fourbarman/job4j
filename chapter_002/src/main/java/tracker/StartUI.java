@@ -13,24 +13,34 @@ public class StartUI {
      */
     private Input input;
     /**
-     * items storage.
+     * Items storage.
      */
     private Tracker tracker;
 
     /**
      * Constructor.
-     * @param input data in.
-     * @param tracker items storage.
+     *
+     * @param input   Input
+     * @param tracker Items storage.
      */
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
+    /**
+     * Constructor
+     */
     public StartUI() {
-
     }
 
+    /**
+     * Initialises program run while not stopped.
+     *
+     * @param input   Input.
+     * @param tracker Items storage.
+     * @param actions User actions.
+     */
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         while (run) {
@@ -41,6 +51,11 @@ public class StartUI {
         }
     }
 
+    /**
+     * Shows menu.
+     *
+     * @param actions User actions.
+     */
     private void showMenu(UserAction[] actions) {
         System.out.println("MENU");
         for (int index = 0; index < actions.length; index++) {
@@ -49,7 +64,9 @@ public class StartUI {
     }
 
     /**
+     * Main method.
      * Program start.
+     *
      * @param args Args
      */
     public static void main(String[] args) {
@@ -57,13 +74,13 @@ public class StartUI {
         Input validate = new ValidateInput(input);
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(),
-                new GetAllAction(),
-                new ReplaceItemAction(),
-                new DeleteItemAction(),
-                new FindWithIdAction(),
-                new FindWithNameAction(),
-                new ExitAction()
+                new CreateAction("Add new item"),
+                new GetAllAction("Show all items"),
+                new ReplaceItemAction("Replace item"),
+                new DeleteItemAction("Delete item"),
+                new FindWithIdAction("Find item by ID"),
+                new FindWithNameAction("Find items by name"),
+                new ExitAction("Exit")
         };
         new StartUI().init(validate, tracker, actions);
     }

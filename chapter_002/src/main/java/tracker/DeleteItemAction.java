@@ -1,12 +1,30 @@
 package tracker;
 
-public class DeleteItemAction implements UserAction {
+/**
+ * DeleteItemAction.
+ *
+ * @author fourbarman (maks.java@yandex.ru).
+ * @version 1.
+ * @since 18.10.2019.
+ */
+public class DeleteItemAction extends BaseAction implements UserAction {
 
-    @Override
-    public String name() {
-        return "Delete item";
+    /**
+     * Constructor
+     *
+     * @param name Action name.
+     */
+    public DeleteItemAction(String name) {
+        super(name);
     }
 
+    /**
+     * Deletes item from tracker.
+     *
+     * @param input   Input.
+     * @param tracker Item's storage.
+     * @return True.
+     */
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("------------ Delete Item ------------");

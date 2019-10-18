@@ -1,11 +1,30 @@
 package tracker;
 
-public class CreateAction implements UserAction {
-    @Override
-    public String name() {
-        return "Add new item";
+/**
+ * CreateAction.
+ *
+ * @author fourbarman (maks.java@yandex.ru).
+ * @version 1.
+ * @since 18.10.2019.
+ */
+public class CreateAction extends BaseAction implements UserAction {
+
+    /**
+     * Constructor
+     *
+     * @param name Action name.
+     */
+    public CreateAction(String name) {
+        super(name);
     }
 
+    /**
+     * Adds item to tracker.
+     *
+     * @param input   Input.
+     * @param tracker Item's storage.
+     * @return True.
+     */
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("------------ Add new Item ------------");

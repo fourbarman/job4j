@@ -75,7 +75,7 @@ public class StartUITest {
     public void whenGetAllActionCheckOutput() {
         StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("------------ All items ------------");
-        GetAllAction act = new GetAllAction();
+        GetAllAction act = new GetAllAction("Show all items");
         act.execute(new StubInput(new String[] {}), tracker);
         for (Item item: tracker.findAll()) {
                     expect.add("Item's ID: " + item.getId()
@@ -94,7 +94,7 @@ public class StartUITest {
         StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("------------ Find Item By Name ------------")
                 .add("Found items: ");
-        FindWithNameAction fwna = new FindWithNameAction();
+        FindWithNameAction fwna = new FindWithNameAction("Find items by name");
         fwna.execute(new StubInput(new String[] {key}), tracker);
         for (Item item: tracker.findByName(key)) {
             expect.add("Item's ID: " + item.getId()
@@ -112,7 +112,7 @@ public class StartUITest {
         StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("------------ Add new Item ------------")
                 .add("------------ New item added ------------");
-        CreateAction ca = new CreateAction();
+        CreateAction ca = new CreateAction("Add new item");
         ca.execute(new StubInput(new String[] {"new", "new"}), tracker);
             expect.add("Item's ID: " + tracker.findAll()[tracker.findAll().length - 1].getId()
                     + " Item's name: " + tracker.findAll()[tracker.findAll().length - 1].getName()
@@ -129,7 +129,7 @@ public class StartUITest {
         StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("------------ Find Item By ID ------------")
                 .add("------------ Found item ------------");
-        FindWithIdAction fwia = new FindWithIdAction();
+        FindWithIdAction fwia = new FindWithIdAction("Find item by ID");
         fwia.execute(new StubInput(new String[] {id}), tracker);
             expect.add("Item's ID: " + tracker.findById(id).getId()
                     + " Item's name: " + tracker.findById(id).getName()
@@ -146,7 +146,7 @@ public class StartUITest {
         StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("------------ Replace item ------------")
                 .add("------------ Found item ------------");
-        ReplaceItemAction ria = new ReplaceItemAction();
+        ReplaceItemAction ria = new ReplaceItemAction("Replace item");
         expect.add("Item's ID: " + tracker.findById(id).getId()
                 + " Item's name: " + tracker.findById(id).getName()
                 + " Description: " + tracker.findById(id).getDesc()
@@ -166,7 +166,7 @@ public class StartUITest {
         String id = item3.getId();
         StringJoiner expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("------------ Delete Item ------------");
-        DeleteItemAction dia = new DeleteItemAction();
+        DeleteItemAction dia = new DeleteItemAction("Delete item");
         dia.execute(new StubInput(new String[] {id}), tracker);
         expect.add("Item with ID " + id + " deleted!");
         assertThat(new String(out.toByteArray()), is(expect.toString()));
