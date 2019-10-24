@@ -13,21 +13,27 @@ import java.util.Random;
  */
 public class Tracker {
     /**
-     * Массив для хранение заявок.
+     * Item's storage.
      */
     private final Item[] items = new Item[100];
 
     /**
-     * Указатель ячейки для новой заявки.
+     * Cell pointer for a new Item.
      */
     private int position = 0;
+    /**
+     * Random.
+     */
 
     private static final Random RN = new Random();
 
-        /**
-     * Метод реализаущий добавление заявки в хранилище
-     * @param item новая заявка
-     * @return item .
+    /**
+     * Generate ID.
+     * Set creation time.
+     * Adds Item to storage.
+     *
+     * @param item New Item.
+     * @return Item.
      */
     public Item add(Item item) {
         if (item != null) {
@@ -39,17 +45,19 @@ public class Tracker {
     }
 
     /**
-     * Метод генерирует уникальный ключ для заявки.
-     * @return Уникальный ключ.
+     * Generate ID.
+     *
+     * @return ID.
      */
     String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
     /**
-     * Метод реализущий замену заявки по ID
-     * @param id идентификатор заявки
-     * @param item новая заявка
+     * Replace Item by ID.
+     *
+     * @param id   ID.
+     * @param item New Item.
      */
     public boolean replace(String id, Item item) {
         boolean success = false;
@@ -65,8 +73,10 @@ public class Tracker {
     }
 
     /**
-     * Метод реализущий удаление заявки
-     * @param id идентификатор удаляемой заявки
+     * Delete Item by ID.
+     *
+     * @param id ID
+     * @return if success
      */
     public boolean delete(String id) {
         boolean success = false;
@@ -82,16 +92,18 @@ public class Tracker {
     }
 
     /**
-     * Метод реализаущий вывод всех заявок
-     * @return result[] массив всех заявок
+     * Shows all Items.
+     *
+     * @return result[] All Items.
      */
     public Item[] findAll() {
         return Arrays.copyOf(this.items, position);
     }
 
     /**
-     * Метод реализаущий поиск по ключу
-     * @param key ключ для поиска
+     * Find Items by key.
+     *
+     * @param key Searching key.
      */
     public Item[] findByName(String key) {
         Item[] result = new Item[this.items.length];
@@ -106,8 +118,9 @@ public class Tracker {
     }
 
     /**
-     * Метод реализаущий поиск по ID
-     * @param id идентификатор
+     * Find Item by ID.
+     *
+     * @param id ID.
      */
     public Item findById(String id) {
         Item item = null;

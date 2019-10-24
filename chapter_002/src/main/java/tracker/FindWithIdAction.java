@@ -1,12 +1,30 @@
 package tracker;
 
-public class FindWithIdAction implements UserAction {
+/**
+ * FindWithIdAction.
+ *
+ * @author fourbarman (maks.java@yandex.ru).
+ * @version 1.
+ * @since 18.10.2019.
+ */
+public class FindWithIdAction extends BaseAction implements UserAction {
 
-    @Override
-    public String name() {
-        return "Find item by ID";
+    /**
+     * Constructor
+     *
+     * @param name Action name.
+     */
+    public FindWithIdAction(String name) {
+        super(name);
     }
 
+    /**
+     * Finds Items by ID.
+     *
+     * @param input   Input.
+     * @param tracker Item's storage.
+     * @return True.
+     */
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("------------ Find Item By ID ------------");

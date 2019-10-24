@@ -1,12 +1,30 @@
 package tracker;
 
-public class FindWithNameAction implements UserAction {
+/**
+ * FindWithNameAction.
+ *
+ * @author fourbarman (maks.java@yandex.ru).
+ * @version 1.
+ * @since 18.10.2019.
+ */
+public class FindWithNameAction extends BaseAction implements UserAction {
 
-    @Override
-    public String name() {
-        return "Find items by name";
+    /**
+     * Constructor
+     *
+     * @param name Action name.
+     */
+    public FindWithNameAction(String name) {
+        super(name);
     }
 
+    /**
+     * Finds Items by name.
+     *
+     * @param input   Input.
+     * @param tracker Item's storage.
+     * @return True.
+     */
     @Override
     public boolean execute(Input input, Tracker tracker) {
         System.out.println("------------ Find Item By Name ------------");
