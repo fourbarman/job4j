@@ -11,7 +11,7 @@ import java.util.Random;
  * @version 1
  * @since 12.08.2019
  */
-public class Tracker {
+public class Tracker extends BaseTracker{
     /**
      * Item's storage.
      */
@@ -35,13 +35,15 @@ public class Tracker {
      * @param item New Item.
      * @return Item.
      */
+    @Override
     public Item add(Item item) {
-        if (item != null) {
-            item.setId(this.generateId());
-            item.setTime(System.currentTimeMillis());
-            this.items[this.position++] = item;
-        }
-        return item;
+        return super.add(item);
+//        if (item != null) {
+//            item.setId(this.generateId());
+//            item.setTime(System.currentTimeMillis());
+//            this.items[this.position++] = item;
+//        }
+//        return item;
     }
 
     /**
@@ -50,7 +52,8 @@ public class Tracker {
      * @return ID.
      */
     String generateId() {
-        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+        return super.generateId();
+        //return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
     /**
@@ -60,16 +63,17 @@ public class Tracker {
      * @param item New Item.
      */
     public boolean replace(String id, Item item) {
-        boolean success = false;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                item.setTime(System.currentTimeMillis());
-                item.setId(id);
-                this.items[i] = item;
-                success = true;
-            }
-        }
-        return success;
+        return super.replace(id, item);
+//        boolean success = false;
+//        for (int i = 0; i < this.position; i++) {
+//            if (this.items[i] != null && this.items[i].getId().equals(id)) {
+//                item.setTime(System.currentTimeMillis());
+//                item.setId(id);
+//                this.items[i] = item;
+//                success = true;
+//            }
+//        }
+//        return success;
     }
 
     /**
@@ -79,16 +83,17 @@ public class Tracker {
      * @return if success
      */
     public boolean delete(String id) {
-        boolean success = false;
-        for (int i = 0; i < this.position; i++) {
-            if (items[i].getId().equals(id)) {
-                items[i] = null;
-                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
-                this.position--;
-                success = true;
-            }
-        }
-        return success;
+        return super.delete(id);
+//        boolean success = false;
+//        for (int i = 0; i < this.position; i++) {
+//            if (items[i].getId().equals(id)) {
+//                items[i] = null;
+//                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
+//                this.position--;
+//                success = true;
+//            }
+//        }
+//        return success;
     }
 
     /**
@@ -97,7 +102,8 @@ public class Tracker {
      * @return result[] All Items.
      */
     public Item[] findAll() {
-        return Arrays.copyOf(this.items, position);
+        return super.findAll();
+        //return Arrays.copyOf(this.items, position);
     }
 
     /**
@@ -106,15 +112,16 @@ public class Tracker {
      * @param key Searching key.
      */
     public Item[] findByName(String key) {
-        Item[] result = new Item[this.items.length];
-        int found = 0;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i] != null && key != null && this.items[i].getName().contains(key)) {
-                result[found] = items[i];
-                found++;
-            }
-        }
-        return Arrays.copyOf(result, found);
+        return super.findByName(key);
+//        Item[] result = new Item[this.items.length];
+//        int found = 0;
+//        for (int i = 0; i < this.position; i++) {
+//            if (this.items[i] != null && key != null && this.items[i].getName().contains(key)) {
+//                result[found] = items[i];
+//                found++;
+//            }
+//        }
+//        return Arrays.copyOf(result, found);
     }
 
     /**
@@ -123,12 +130,13 @@ public class Tracker {
      * @param id ID.
      */
     public Item findById(String id) {
-        Item item = null;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                item = items[i];
-            }
-        }
-        return item;
+        return super.findById(id);
+//        Item item = null;
+//        for (int i = 0; i < items.length; i++) {
+//            if (items[i] != null && items[i].getId().equals(id)) {
+//                item = items[i];
+//            }
+//        }
+//        return item;
     }
 }
