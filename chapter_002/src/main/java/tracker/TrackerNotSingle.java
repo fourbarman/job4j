@@ -1,22 +1,17 @@
 package tracker;
 
+import java.lang.*;
+import java.util.Arrays;
 import java.util.Random;
+
 /**
- * TrackerSingleEager.
+ * Tracker.
  *
  * @author fourbarman (mailto:maks.java@yandex.ru)
  * @version 1
- * @since 03.11.2019
+ * @since 12.08.2019
  */
-public class TrackerSingleEager extends BaseTracker {
-    private static final TrackerSingleEager INSTANCE = new TrackerSingleEager();
-
-    private TrackerSingleEager() {
-    }
-
-    public static TrackerSingleEager getInstance() {
-        return INSTANCE;
-    }
+public class TrackerNotSingle extends BaseTracker {
     /**
      * Item's storage.
      */

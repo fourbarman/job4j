@@ -1,8 +1,14 @@
 package tracker;
 
 import java.util.Random;
-
-public class TrackerSingleLazy extends BaseTracker{
+/**
+ * TrackerSingleLazy.
+ *
+ * @author fourbarman (mailto:maks.java@yandex.ru)
+ * @version 1
+ * @since 03.11.2019
+ */
+public class TrackerSingleLazy extends BaseTracker {
     private static TrackerSingleLazy instance;
 
     private TrackerSingleLazy() {

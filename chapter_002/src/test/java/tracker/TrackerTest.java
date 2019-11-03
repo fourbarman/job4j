@@ -19,7 +19,7 @@ public class TrackerTest {
     Item item1, item2, item3, item4, item5, newItem;
     @Before
     public void setVar() {
-        tracker = new Tracker();
+        tracker = new TrackerNotSingle();
         item1 = new Item("firstItem", "firstDescription");
         item2 = new Item("secondItem", "secondDescription");
         item3 = new Item("thirdItem", "thirdDescription");

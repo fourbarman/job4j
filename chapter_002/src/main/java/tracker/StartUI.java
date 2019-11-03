@@ -72,8 +72,7 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        Tracker tracker = new Tracker();
-        //Tracker tracker = Tracker.Single.INSTANCE;
+        Tracker tracker = new TrackerNotSingle();
         UserAction[] actions = {
                 new CreateAction("Add new item"),
                 new GetAllAction("Show all items"),

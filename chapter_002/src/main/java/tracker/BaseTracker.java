@@ -2,8 +2,14 @@ package tracker;
 
 import java.util.Arrays;
 import java.util.Random;
-
-public abstract class BaseTracker {
+/**
+ * BaseTracker.
+ *
+ * @author fourbarman (mailto:maks.java@yandex.ru)
+ * @version 1
+ * @since 03.11.2019
+ */
+public abstract class BaseTracker implements Tracker {
     /**
      * Item's storage.
      */
