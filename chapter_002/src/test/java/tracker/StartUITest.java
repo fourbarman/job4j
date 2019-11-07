@@ -16,14 +16,14 @@ import static org.junit.Assert.assertThat;
  * @since 14.10.2019
  */
 public class StartUITest {
-        Tracker tracker;
+    TrackerNotSingle tracker;
     Item item1, item2, item3, item4, item5;
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     @Before
     public void setVar() {
-        tracker = new Tracker();
+        tracker = new TrackerNotSingle();
         item1 = new Item("firstItem", "firstDescription");
         item2 = new Item("secondItem", "secondDescription");
         item3 = new Item("thirdItem", "thirdDescription");
@@ -49,7 +49,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[]{action});
+        new StartUI().init(input, new TrackerNotSingle(), new UserAction[]{action});
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("MENU")
                 .add("0. Stub action")
@@ -65,7 +65,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[]{action});
+        new StartUI().init(input, new TrackerNotSingle(), new UserAction[]{action});
         assertThat(action.isCall(), is(true));
     }
     /**
