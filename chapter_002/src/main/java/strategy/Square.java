@@ -7,7 +7,7 @@ package strategy;
  * @version 1.
  * @since 15.02.2019.
  */
-public class Square implements Shape{
+public class Square implements Shape {
     /**
      * Draws square.
      */

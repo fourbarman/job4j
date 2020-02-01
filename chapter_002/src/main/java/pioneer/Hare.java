@@ -13,7 +13,7 @@ public class Hare {
      *
      * @param ball Ball to eat.
      */
-    public void tryEat(Ball ball){
+    public void tryEat(Ball ball) {
         System.out.println("Hare trying to eat the Ball");
     }
 }
