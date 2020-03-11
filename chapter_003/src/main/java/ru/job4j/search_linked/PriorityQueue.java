@@ -22,15 +22,19 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = 0;
         for (Task element : tasks) {
-            if (element.getPriority() >= tasks.size()) {
-                index = tasks.size() - 1;
-            } else {
-                index = element.getPriority();
+            if (task.getPriority() >= element.getPriority()) {
+                index++;
             }
+
         }
         this.tasks.add(index, task);
     }
 
+    /**
+     * Returns first task with index = 0 and than removes it.
+     *
+     * @return task.
+     */
     public Task take() {
         return tasks.remove(0);
     }

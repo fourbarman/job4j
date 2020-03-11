@@ -2,14 +2,20 @@ package ru.job4j.search_linked;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Test.
+ *
+ * @author fourbarman (mailto:maks.java@yandex.ru)
+ * @version 1
+ * @since 11.03.2020
+ */
 public class PriorityQueueTest {
+    /**
+     * Test priority queue.
+     */
     @Test
     public void whenHigherPriority() {
         PriorityQueue queue = new PriorityQueue();
