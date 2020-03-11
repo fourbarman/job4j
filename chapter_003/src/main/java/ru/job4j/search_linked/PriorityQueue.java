@@ -7,7 +7,7 @@ import java.util.LinkedList;
  *
  * @author fourbarman (maks.java@yandex.ru).
  * @version 1.
- * @since 11.03.2020.
+ * @since 05.03.2020.
  */
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
