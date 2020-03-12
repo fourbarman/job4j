@@ -1,4 +1,4 @@
-package ru.job4j.search_linked;
+package ru.job4j.searchlinked;
 
 /**
  * Task.

@@ -8,8 +8,18 @@ import java.util.Arrays;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Test.
+ *
+ * @author fourbarman (mailto:maks.java@yandex.ru)
+ * @version 1
+ * @since 12.03.2020
+ */
 @Ignore
 public class ConvertList2ArrayTest {
+    /**
+     * Test when 7 elements in list and method returns 9 in 2D array.
+     */
     @Test
     public void when7ElementsThen9() {
         ConvertList2Array list = new ConvertList2Array();

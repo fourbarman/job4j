@@ -5,4 +5,4 @@
  * @version 1
  * @since 05.03.2020
  */
-package ru.job4j.search_linked;
+package ru.job4j.searchlinked;
