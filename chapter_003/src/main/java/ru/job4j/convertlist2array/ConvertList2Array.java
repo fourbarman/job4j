@@ -20,18 +20,14 @@ public class ConvertList2Array {
      */
     public static int[][] toArray(List<Integer> list, int cells) {
         int groups = (int) Math.ceil((double) list.size() / cells);
-        System.out.println(groups);
         int[][] array = new int[groups][cells];
         int row = 0, cell = 0;
         for (Integer num : list) {
             array[row][cell] = num;
-            if (cell < cells - 1) {
-                cell++;
-            } else if (row < groups - 1 && cell == cells - 1) {
+            cell++;
+            if (cell == cells) {
                 cell = 0;
                 row++;
-            } else if (row == groups - 1 && cell == cells - 1) {
-                System.out.println("ended.");
             }
         }
         return array;
