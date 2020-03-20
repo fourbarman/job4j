@@ -1,4 +1,4 @@
-package ru.job4j.searchlinked;
+package ru.job4j.collection.searchlinked;
 
 import org.junit.Test;
 

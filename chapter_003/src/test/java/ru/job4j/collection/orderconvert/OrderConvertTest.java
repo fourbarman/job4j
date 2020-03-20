@@ -1,4 +1,4 @@
-package ru.job4j.orderconvert;
+package ru.job4j.collection.orderconvert;
 
 import org.junit.Test;
 

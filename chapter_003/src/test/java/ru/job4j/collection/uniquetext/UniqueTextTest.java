@@ -1,4 +1,4 @@
-package ru.job4j.uniquetext;
+package ru.job4j.collection.uniquetext;
 
 import org.junit.Test;
 

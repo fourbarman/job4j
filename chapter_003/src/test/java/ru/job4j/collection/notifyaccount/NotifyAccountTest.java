@@ -1,4 +1,4 @@
-package ru.job4j.notifyaccount;
+package ru.job4j.collection.notifyaccount;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package ru.job4j.fullsearch;
+package ru.job4j.collection.fullsearch;
 
 import org.junit.Test;
 
