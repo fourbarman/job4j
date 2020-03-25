@@ -24,10 +24,8 @@ public class StringCompare implements Comparator<String> {
     public int compare(String left, String right) {
         int index = 0;
         int result = 0;
-        int l = left.length();
-        if (left.length() > right.length()) {
-            l = right.length();
-        }
+        int l = Math.min(left.length(), right.length());
+        int compare = Integer.compare(left.length(), right.length());
         while (index < l) {
             if (left.charAt(index) != right.charAt(index)) {
                 result = Character.compare(left.charAt(index), right.charAt(index));
@@ -35,9 +33,9 @@ public class StringCompare implements Comparator<String> {
             }
             index++;
         }
-        if (result == 0 && left.length() > right.length()) {
+        if (result == 0 && compare > 0) {
             result = 1;
-        } else if (result == 0 && left.length() < right.length()) {
+        } else if (result == 0 && compare < 0) {
             result = -1;
         }
         return result;
