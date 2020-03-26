@@ -1,7 +1,13 @@
 package ru.job4j.collection.lexsort;
 
 import java.util.Comparator;
-
+/**
+ * LexSort.
+ *
+ * @author fourbarman (maks.java@yandex.ru).
+ * @version 1.
+ * @since 26.03.2020.
+ */
 public class LexSort implements Comparator<String> {
     /**
      * Compare.
@@ -14,47 +20,8 @@ public class LexSort implements Comparator<String> {
      */
     @Override
     public int compare(String left, String right) {
-        String leftString = getStringNumbers(toStr(left));
-        String rightString = getStringNumbers(toStr(right));
-        return leftString.compareTo(rightString);
-    }
-
-    /**
-     * Makes string from String array.
-     * @param str Array of Strings.
-     * @return String.
-     */
-    public String getStringNumbers(String[] str) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < str.length; i++) {
-            if (isNumber(str[i])) {
-                final String s = str[i];
-                sb.append(s);
-            }
-        }
-        return sb.toString();
-    }
-
-    /**
-     * Returns if String contains int number.
-     * @param str String
-     * @return Result.
-     */
-    public boolean isNumber(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch(NumberFormatException e){
-            return false;
-        }
-    }
-
-    /**
-     * Returns String[] without '.' splitter.
-     * @param s String
-     * @return String[]
-     */
-    public String[] toStr(String s) {
-        return s.split("\\.");
+        String leftString = left.substring(0, left.indexOf('.'));
+        String rightString = right.substring(0, right.indexOf('.'));
+        return Integer.compare(Integer.valueOf(leftString), Integer.valueOf(rightString));
     }
 }
