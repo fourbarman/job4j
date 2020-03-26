@@ -33,10 +33,8 @@ public class StringCompare implements Comparator<String> {
             }
             index++;
         }
-        if (result == 0 && compare > 0) {
-            result = 1;
-        } else if (result == 0 && compare < 0) {
-            result = -1;
+        if (result == 0 && compare != 0) {
+            return Integer.compare(compare, 0);
         }
         return result;
     }
