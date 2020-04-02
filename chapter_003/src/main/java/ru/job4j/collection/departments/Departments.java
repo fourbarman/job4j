@@ -25,30 +25,6 @@ public class Departments {
         orgs.sort(Comparator.naturalOrder());
     }
     public static void sortDesc(List<String> orgs) {
-        List<List<String>> result = new ArrayList<>();
-        int index = 0;
-        while (index < orgs.size()) {
-            if (orgs.get(index).length() == orgs.get(0).length()) {
-                int end = index;
-                while (end < orgs.size()) {
-                    if (orgs.get(end).startsWith(orgs.get(index))) {
-                        end++;
-                    } else {
-                        break;
-                    }
-                }
-                result.add(orgs.subList(index, end));
-            }
-            index++;
-        }
-
-        List<String> lst = result.get(result.size() - 1);
-        int i = result.size() - 2;
-        while (i >= 0) {
-            lst.addAll(result.get(i));
-            i--;
-        }
-        orgs = lst;
-        System.out.println(orgs);
+        orgs.sort(new DepAscComp());
     }
 }
