@@ -23,24 +23,11 @@ public class DepDescComp implements Comparator<String> {
      */
     @Override
     public int compare(String o1, String o2) {
-        int result = 0;
         String[] first = o1.split("/");
         String[] second = o2.split("/");
-        int length = Math.min(first.length, second.length);
-        int compare = Integer.compare(o1.length(), o2.length());
-        int firstElComp = second[0].compareTo(first[0]);
-        if (firstElComp == 0) {
-            for (int index = 1; index < length; index++) {
-                if (second[index].compareTo(first[index]) != 0) {
-                    result = first[index].compareTo(second[index]);
-                    break;
-                }
-            }
-        } else {
-            result = second[0].compareTo(first[0]);
-        }
-        if (result == 0 && compare != 0) {
-            result = compare;
+        int result = second[0].compareTo(first[0]);
+        if (result == 0) {
+            result = o1.compareTo(o2);
         }
         return result;
     }
