@@ -6,7 +6,6 @@ import ru.job4j.lambda.school.School;
 import ru.job4j.lambda.school.Student;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -21,33 +20,6 @@ import static org.junit.Assert.assertThat;
 public class SchoolTest {
     List<Student> list;
     School school;
-
-    /**
-     * Returns if score is in [70: 100].
-     *
-     * @return predicate.
-     */
-    public static Predicate<Student> is10A() {
-        return p -> p.getScore() >= 70 && p.getScore() <= 100;
-    }
-
-    /**
-     * Returns if score is in [50: 70).
-     *
-     * @return predicate.
-     */
-    public static Predicate<Student> is10B() {
-        return p -> p.getScore() >= 50 && p.getScore() < 70;
-    }
-
-    /**
-     * Returns if score is in (0: 50).
-     *
-     * @return predicate.
-     */
-    public static Predicate<Student> is10C() {
-        return p -> p.getScore() > 0 && p.getScore() < 50;
-    }
 
     /**
      * Set variables for test.
@@ -70,7 +42,7 @@ public class SchoolTest {
      */
     @Test
     public void when10AStudents() {
-        assertThat(school.collect(list, is10A()).size(), is(3));
+        assertThat(school.collect(list, p -> p.getScore() >= 70 && p.getScore() <= 100).size(), is(3));
     }
 
     /**
@@ -78,7 +50,7 @@ public class SchoolTest {
      */
     @Test
     public void when10BStudents() {
-        assertThat(school.collect(list, is10B()).size(), is(2));
+        assertThat(school.collect(list, p -> p.getScore() >= 50 && p.getScore() < 70).size(), is(2));
     }
 
     /**
@@ -86,6 +58,6 @@ public class SchoolTest {
      */
     @Test
     public void when10CStudents() {
-        assertThat(school.collect(list, is10C()).size(), is(1));
+        assertThat(school.collect(list, p -> p.getScore() > 0 && p.getScore() < 50).size(), is(1));
     }
 }
