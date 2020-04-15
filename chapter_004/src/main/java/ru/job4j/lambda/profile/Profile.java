@@ -1,8 +1,5 @@
 package ru.job4j.lambda.profile;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Profile.
  *
@@ -23,12 +20,9 @@ public class Profile {
     }
 
     /**
-     * Returns list of addresses.
-     *
-     * @param profiles List of profiles.
-     * @return list.
+     * Get address.
      */
-    public static List<Address> collect(List<Profile> profiles) {
-        return profiles.stream().map(profile -> profile.address).collect(Collectors.toList());
+    public Address getAddress() {
+        return this.address;
     }
 }

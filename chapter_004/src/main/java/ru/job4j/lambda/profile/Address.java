@@ -22,5 +22,42 @@ public class Address {
         this.home = home;
         this.apartment = apartment;
     }
-}
 
+    /**
+     * Get city.
+     */
+    public String getCity() {
+        return this.city;
+    }
+
+    /**
+     * Equals.
+     *
+     * @param obj Object.
+     * @return If equal.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        Address ad = (Address) obj;
+        return (
+                ad.apartment == this.apartment
+                        && ad.home == this.home
+                        && ad.street.equals(this.street)
+                        && ad.city.equals(this.city)
+        );
+    }
+
+    /**
+     * Returns hashCode from city field.
+     *
+     * @return int hashcode
+     */
+    @Override
+    public int hashCode() {
+        return this.city.hashCode();
+    }
+}

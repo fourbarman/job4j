@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static ru.job4j.lambda.profile.Profile.collect;
+import static ru.job4j.lambda.profile.Profiles.collect;
 
 /**
  * Test.
