@@ -58,6 +58,6 @@ public class Address {
      */
     @Override
     public int hashCode() {
-        return this.city.hashCode();
+        return this.apartment;
     }
 }

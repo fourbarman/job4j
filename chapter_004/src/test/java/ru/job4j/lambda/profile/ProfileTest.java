@@ -17,15 +17,17 @@ import static ru.job4j.lambda.profile.Profiles.collect;
  */
 public class ProfileTest {
     /**
-     * Test when take 2 address.
+     * Test when 2 addresses from 3 are equal.
      */
     @Test
-    public void whenTakeAddressFrom2ProfilesThan2Addresses() {
+    public void whenTwoAddressesFromThreeAreEqualThanReturnTwoDistinct() {
         Profile profile = new Profile();
         profile.setAddress(new Address("City1", "Street1", 1, 1));
+        Profile profile1 = new Profile();
+        profile1.setAddress(new Address("City1", "Street1", 1, 1));
         Profile profile2 = new Profile();
         profile2.setAddress(new Address("City2", "Street2", 2, 2));
-        List<Profile> list = List.of(profile, profile2);
+        List<Profile> list = List.of(profile, profile1, profile2);
         assertThat(collect(list).size(), is(2));
     }
 }
