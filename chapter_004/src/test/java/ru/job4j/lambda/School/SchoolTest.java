@@ -28,12 +28,12 @@ public class SchoolTest {
     public void setVar() {
         school = new School();
         list = List.of(
-                new Student(15),
-                new Student(50),
-                new Student(60),
-                new Student(70),
-                new Student(80),
-                new Student(99)
+                new Student("Ivanov", "Ivan", 15),
+                new Student("Petrov", "Petr", 50),
+                new Student("Sidorov", "Sidor", 60),
+                new Student("Ivanova", "Ivana", 70),
+                new Student("Petrova", "Petra", 80),
+                new Student("Sidorova", "Sidra", 99)
         );
     }
 
@@ -59,5 +59,13 @@ public class SchoolTest {
     @Test
     public void when10CStudents() {
         assertThat(school.collect(list, p -> p.getScore() > 0 && p.getScore() < 50).size(), is(1));
+    }
+
+    /**
+     * Test size when students to map.
+     */
+    @Test
+    public void whenSixStudentsToMapThanMapSizeIsSix() {
+        assertThat(school.collectStuds(list).size(), is(6));
     }
 }
