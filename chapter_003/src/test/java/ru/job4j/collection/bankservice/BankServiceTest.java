@@ -37,7 +37,7 @@ public class BankServiceTest {
      * Test when transfer money.
      */
     @Test
-    public void transferMoney() {
+    public void transferMoneyTest() {
         User user = new User("3434", "Petr Arsentev");
         BankService bank = new BankService();
         bank.addUser(user);
