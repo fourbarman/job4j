@@ -34,7 +34,7 @@ public class School {
      */
     public Map<String, String> collectStuds(List<Student> students) {
         return students.stream().collect(Collectors.toMap(
-                Student::getSurname, Student::getSurname)
+                Student::getSurname, Student::getSurname, (surname1, surname2) -> surname1)
         );
     }
 }

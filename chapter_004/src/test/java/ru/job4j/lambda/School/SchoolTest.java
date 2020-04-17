@@ -29,6 +29,7 @@ public class SchoolTest {
         school = new School();
         list = List.of(
                 new Student("Ivanov", "Ivan", 15),
+                new Student("Ivanov", "Ivan", 15),
                 new Student("Petrov", "Petr", 50),
                 new Student("Sidorov", "Sidor", 60),
                 new Student("Ivanova", "Ivana", 70),
@@ -58,7 +59,7 @@ public class SchoolTest {
      */
     @Test
     public void when10CStudents() {
-        assertThat(school.collect(list, p -> p.getScore() > 0 && p.getScore() < 50).size(), is(1));
+        assertThat(school.collect(list, p -> p.getScore() > 0 && p.getScore() < 50).size(), is(2));
     }
 
     /**
