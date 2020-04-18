@@ -59,11 +59,15 @@ public class BankService {
      * @return account.
      */
     public Account findByRequisite(String passport, String requisite) {
-        return users.get(findByPassport(passport))
-                .stream()
-                .filter(account -> account.getRequisite().equals(requisite))
-                .findFirst()
-                .orElse(null);
+        User user = findByPassport(passport);
+        if (user != null) {
+            return users.get(user)
+                    .stream()
+                    .filter(account -> account.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
+        }
+        return null;
     }
 
     /**
