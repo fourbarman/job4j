@@ -38,10 +38,12 @@ public class Address {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null || obj.getClass() != this.getClass())
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
             return false;
+        }
         Address ad = (Address) obj;
         return (
                 ad.apartment == this.apartment

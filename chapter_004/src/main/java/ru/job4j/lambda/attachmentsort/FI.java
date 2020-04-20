@@ -40,7 +40,7 @@ public class FI {
         Function<Student, Mark> func = new Function<Student, Mark>() {
 
             @Override
-            public Mark apply(Student Student) {
+            public Mark apply(Student student) {
                 return null;
             }
         };

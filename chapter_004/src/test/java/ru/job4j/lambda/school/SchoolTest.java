@@ -1,9 +1,7 @@
-package ru.job4j.lambda.School;
+package ru.job4j.lambda.school;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.lambda.school.School;
-import ru.job4j.lambda.school.Student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
