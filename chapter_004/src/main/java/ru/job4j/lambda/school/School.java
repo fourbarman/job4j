@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * School.
@@ -36,5 +37,19 @@ public class School {
         return students.stream().collect(Collectors.toMap(
                 Student::getSurname, Student::getSurname, (surname1, surname2) -> surname1)
         );
+    }
+
+    /**
+     * Returns list of studs having scope > bound.
+     *
+     * @param students List of students.
+     * @return List.
+     */
+    public List<Student> levelOf(List<Student> students, int bound) {
+        return students.stream()
+                .flatMap(Stream::ofNullable)
+                .sorted()
+                .dropWhile(s -> s.getScope() < bound)
+                .collect(Collectors.toList());
     }
 }
