@@ -11,7 +11,7 @@ import java.util.function.Predicate;
  * @since 14.04.2020.
  */
 public class PhoneDictionary {
-    private ArrayList<Person> persons = new ArrayList<Person>();
+    private ArrayList<Person> persons = new ArrayList<>();
 
     /**
      * Add Person to list.
@@ -37,8 +37,8 @@ public class PhoneDictionary {
                 person.getAddress().contains(key));
         Predicate<Person> phonePred = person -> (
                 person.getPhone().contains(key));
-        Predicate<Person> combine = namePred.or(surnamePred).or(addressPred).or(phonePred);
-        ArrayList<Person> result = new ArrayList<>();
+        var combine = namePred.or(surnamePred).or(addressPred).or(phonePred);
+        var result = new ArrayList<Person>();
         for (Person person : persons) {
             if (combine.test(person)) {
                 result.add(person);

@@ -1,5 +1,6 @@
 package ru.job4j.lambda;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -20,12 +21,14 @@ public class PhoneDictionaryTest {
      */
     @Test
     public void whenFindByName() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var key = "etr";
+        var expected = "Arsentev";
+        var phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        ArrayList<Person> persons = phones.find("etr");
-        assertThat(persons.get(0).getSurname(), is("Arsentev"));
+        var persons = phones.find(key);
+        assertThat(persons.get(0).getSurname(), is(expected));
     }
 
     /**
@@ -33,11 +36,12 @@ public class PhoneDictionaryTest {
      */
     @Test
     public void whenNotFoundByName() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var key = "zzz";
+        var phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
-        ArrayList<Person> persons = phones.find("zzz");
+        var persons = phones.find(key);
         assertThat(persons.isEmpty(), is(true));
     }
 }
