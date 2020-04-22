@@ -24,7 +24,6 @@ public class Group {
         return students.stream()
                 .flatMap(student -> student.getUnits().stream()
                         .map(unit -> new Group.Holder(unit, student.getName())))
-                .filter(e -> e.key != null)
                 .collect(Collectors.groupingBy(
                         t -> t.key, Collector.of(
                                 HashSet::new, (set, el) -> set.add(el.value),

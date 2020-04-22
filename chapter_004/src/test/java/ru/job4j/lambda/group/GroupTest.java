@@ -44,16 +44,4 @@ public class GroupTest {
         assertThat(Group.sections(list).size(), is(3));
     }
 
-    /**
-     * Test when Set of sections contains null.
-     */
-    @Test
-    public void whenNullInThreeSectionsThanMapHasSizeTwo() {
-        Set<String> sect = new HashSet<>();
-        sect.add("sect1");
-        sect.add(null);
-        sect.add("sect3");
-        List<Student> listWithNull = List.of(new Student("Ivan", sect));
-        assertThat(Group.sections(listWithNull).size(), is(2));
-    }
 }
