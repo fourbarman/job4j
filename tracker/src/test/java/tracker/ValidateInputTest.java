@@ -23,16 +23,18 @@ public class ValidateInputTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
     public List<UserAction> range;
+    Tracker tracker;
+    public StartUI ui;
 
     @Before
 
     public void loadMem() {
         System.setOut(new PrintStream(this.mem));
-        //tracker = new Tracker();
+        tracker = new Tracker();
         range = new ArrayList<>();
-        range.add(new AddItem(0, "Add new Item"));
-        range.add(new ShowItems(1, "Show all Items"));
-        range.add(new EditItem(2, "Edit item"));
+//        range.add(new AddItem(0, "Add new Item"));
+//        range.add(new ShowItems(1, "Show all Items"));
+//        range.add(new EditItem(2, "Edit item"));
 //        range.add(new DeleteItem(3, "Delete Item"));
 //        range.add(new FindById(4, "Find item by Id"));
 //        range.add(new FindByName(5, "Find items by name"));
@@ -49,7 +51,8 @@ public class ValidateInputTest {
         ValidateInput input = new ValidateInput(
                 new StubInput(new String[] {"invalid", "1"})
         );
-        input.ask("gogo", range);
+        new StartUI(input, tracker).init();
+        input.ask("Enter", range);//range
         assertThat(
                 this.mem.toString(),
                 is(

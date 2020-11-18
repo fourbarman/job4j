@@ -23,4 +23,5 @@ public interface Input {
      * @param range list of user actions.
      */
     int ask(String question, List<UserAction> range);
+    //int ask(String question, int[] range);
 }
